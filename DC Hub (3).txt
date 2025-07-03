@@ -118,6 +118,20 @@ Tab:CreateButton({
 Tab:CreateButton({
     Name = "No CoolDown Cream",  
     Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cream.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Vanilla",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Vanilla.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Eggma",  
+    Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/sMeSDW7s"))()
     end,
 })
