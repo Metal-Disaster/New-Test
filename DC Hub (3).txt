@@ -136,6 +136,62 @@ Tab:CreateButton({
     end,
 })
 
+Tab:CreateButton({
+    Name = "No CoolDown Bendy",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Bendy.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Boris",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Boris.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cuphead",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cuphead.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Mugman",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Mugman.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Monika",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Monika.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sayori",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sayori.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sans",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sans.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Frisk",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Frisk.txt"))()
+    end,
+})
+
 local Tab = Window:CreateTab("Extra", 4483362458)
 
 Tab:CreateParagraph({
