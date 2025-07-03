@@ -130,9 +130,9 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
-    Name = "No CoolDown Eggma",  
+    Name = "No CoolDown Eggman",  
     Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/sMeSDW7s"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Eggman.txt"))()
     end,
 })
 
