@@ -3,8 +3,8 @@ local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 -- Ã°Å¸Å½Â® Crear la ventana principal del menÃƒÂº
 local Window = Rayfield:CreateWindow({
-    Name = "DC 1.0 Hub | By Metal_Disaster",
-    LoadingTitle = "DC 1.0 Hub",
+    Name = "Test Hub | By Metal_Disaster",
+    LoadingTitle = "Test Hub",
     LoadingSubtitle = "by Metal_Disaster",
     ConfigurationSaving = {
         Enabled = true,
