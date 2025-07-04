@@ -554,3 +554,35 @@ Tab:CreateToggle({
         end
     end,
 })
+
+Tab:CreateToggle({
+    Name = "FPS Boost",
+    CurrentValue = false,
+    Callback = function(Value)
+        if Value then
+            -- Activar FPS Boost desde URL externa
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FPS-Boost/refs/heads/main/FPS.txt"))()
+        else
+            -- Restaurar configuración original
+            local Lighting = game:GetService("Lighting")
+            local Terrain = workspace:FindFirstChildOfClass("Terrain")
+            local original = getgenv().OriginalSettings
+
+            if original then
+                Lighting.GlobalShadows = original.GlobalShadows
+                Lighting.FogEnd = original.FogEnd
+                Lighting.Brightness = original.Brightness
+
+                if Terrain then
+                    Terrain.WaterWaveSize = original.WaterWaveSize
+                    Terrain.WaterReflectance = original.WaterReflectance
+                    Terrain.WaterTransparency = original.WaterTransparency
+                end
+
+                print("🔄 FPS Boost desactivado y configuración restaurada")
+            else
+                warn("❌ No hay configuración original guardada")
+            end
+        end
+    end
+})
