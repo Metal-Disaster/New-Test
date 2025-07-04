@@ -563,7 +563,7 @@ local originalFogColor = Lighting.FogColor
 
 -- Toggle "Quitar Fog"
 Tab:CreateToggle({
-    Name = "Quitar Fog",
+    Name = "No Fog",
     CurrentValue = false,
     Callback = function(state)
         if state then
