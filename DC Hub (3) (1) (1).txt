@@ -535,45 +535,42 @@ Tab:CreateToggle({
 })
 
 Tab:CreateToggle({
-    Name = "Infinite Jump",
-    CurrentValue = false,
-    Callback = function(Value)
-        if Value then
-            -- Activar: Cargar el script desde URL
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
-        else
-            if getgenv().JumpLoop then
-                getgenv().JumpLoop:Disconnect()
-                getgenv().JumpLoop = nil
-            end
-
-            if getgenv().JumpGui then
-                getgenv().JumpGui:Destroy()
-                getgenv().JumpGui = nil
-            end
-        end
-    end,
-})
-
--- Variables para guardar valores originales
-local Lighting = game:GetService("Lighting")
-local originalFogStart = Lighting.FogStart
-local originalFogEnd = Lighting.FogEnd
-local originalFogColor = Lighting.FogColor
-
--- Toggle "No Fog"
-Tab:CreateToggle({
-    Name = "No Fog",
+    Name = "No Fog + Fps",
     CurrentValue = false,
     Callback = function(state)
         if state then
-            -- Ejecutar script desde URL para quitar el fog
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FPS-Boost/refs/heads/main/Gama%20baja.txt"))()
+            -- Activar (ejecutar desde URL)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-Fog-FPS/refs/heads/main/Gama%20baja%201.txt"))()
         else
-            -- Restaurar valores originales
-            Lighting.FogStart = originalFogStart
-            Lighting.FogEnd = originalFogEnd
-            Lighting.FogColor = originalFogColor
+            -- Restaurar (desactivar boost)
+            if getgenv().BalancedPlusOriginal then
+                local Lighting = game:GetService("Lighting")
+                local Terrain = workspace:FindFirstChildOfClass("Terrain")
+
+                Lighting.GlobalShadows = getgenv().BalancedPlusOriginal.GlobalShadows
+                Lighting.FogEnd = getgenv().BalancedPlusOriginal.FogEnd
+                Lighting.Brightness = getgenv().BalancedPlusOriginal.Brightness
+
+                if Terrain then
+                    Terrain.WaterWaveSize = getgenv().BalancedPlusOriginal.WaterWaveSize
+                    Terrain.WaterReflectance = getgenv().BalancedPlusOriginal.WaterReflectance
+                    Terrain.WaterTransparency = getgenv().BalancedPlusOriginal.WaterTransparency
+                end
+
+                for _, e in ipairs(getgenv().BalancedPlusOriginal.Effects) do
+                    e.Parent = Lighting
+                end
+            end
+
+            if getgenv().BalancedPlusModified then
+                for _, data in ipairs(getgenv().BalancedPlusModified) do
+                    if data.object and data.object.Parent then
+                        data.object[data.property] = data.original
+                    end
+                end
+            end
+
+            print("♻️ Balanced+ FPS Boost DESACTIVADO")
         end
-    end,
+    end
 })
