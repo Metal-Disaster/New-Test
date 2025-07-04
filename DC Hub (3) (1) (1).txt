@@ -28,7 +28,28 @@ Tab:CreateToggle({
     Name = "ESP (All Players)",
     CurrentValue = false,
     Callback = function(state)
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP2.txt"))()
+        if state then
+            -- Si el toggle está activado, cargamos el script de ESP
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP2.txt"))()
+            getgenv().ESP_Enabled = true  -- Aseguramos que ESP esté habilitado
+        else
+            -- Si el toggle está desactivado, desconectamos la conexión y deshabilitamos el ESP
+            if getgenv().ESP_Connection then
+                getgenv().ESP_Connection:Disconnect()  -- Detenemos la conexión que se está ejecutando
+            end
+            getgenv().ESP_Enabled = false  -- Desactivamos ESP
+            -- Eliminar ESP de todos los jugadores actuales
+            for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
+                if p.Character then
+                    -- Eliminamos los Highlights y los NameTags de los personajes
+                    local char = p.Character
+                    local h = char:FindFirstChild("ESP_Highlight")
+                    local t = char:FindFirstChild("ESP_NameTag")
+                    if h then h:Destroy() end
+                    if t then t:Destroy() end
+                end
+            end
+        end
     end
 })
 
