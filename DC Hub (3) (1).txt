@@ -554,3 +554,26 @@ Tab:CreateToggle({
         end
     end,
 })
+
+-- Variables para guardar valores originales
+local Lighting = game:GetService("Lighting")
+local originalFogStart = Lighting.FogStart
+local originalFogEnd = Lighting.FogEnd
+local originalFogColor = Lighting.FogColor
+
+-- Toggle "Quitar Fog"
+Tab:CreateToggle({
+    Name = "Quitar Fog",
+    CurrentValue = false,
+    Callback = function(state)
+        if state then
+            -- Ejecutar script desde URL para quitar el fog
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FPS-Boost/refs/heads/main/Gama%20baja.txt"))()
+        else
+            -- Restaurar valores originales
+            Lighting.FogStart = originalFogStart
+            Lighting.FogEnd = originalFogEnd
+            Lighting.FogColor = originalFogColor
+        end
+    end,
+})
