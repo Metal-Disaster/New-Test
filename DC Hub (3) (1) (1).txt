@@ -24,26 +24,11 @@ Tab:CreateParagraph({
     Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo puede tener errores o puedes saber que usas exploits / You should only run with the buttons with the character names indicated because otherwise you may have errors or you may know that you use exploits"
 })
 
--- Crear Toggle para activar/desactivar el ESP
 Tab:CreateToggle({
-    Name = "ESP (All Players)", -- Nombre del toggle
-    CurrentValue = false, -- Estado inicial (desactivado)
-    Callback = function(State)
-        if State then
-            -- Si el toggle está activado, cargar el script desde la URL de Pastebin
-            local url = "https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP2.txt"  -- Cambia esto por la URL de tu Pastebin
-            local scriptSource = game:GetService("HttpService"):GetAsync(url)
-            loadstring(scriptSource)()  -- Ejecuta el script cargado desde la URL
-
-        else
-            -- Si el toggle está desactivado, elimina el ESP
-            if getgenv().ESP_Connection then
-                getgenv().ESP_Connection:Disconnect()  -- Desconectar la conexión de los jugadores
-            end
-
-            getgenv().ESP_Enabled = false  -- Desactivar el ESP
-            -- Aquí puedes añadir más código para limpiar los efectos visuales si es necesario.
-        end
+    Name = "ESP (All Players)",
+    CurrentValue = false,
+    Callback = function(state)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP2.txt"))()
     end
 })
 
