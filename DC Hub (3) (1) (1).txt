@@ -30,7 +30,7 @@ Tab:CreateToggle({
     Callback = function(state)
         if state then
             -- Si el toggle está activado, cargamos el script de ESP
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP2.txt"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
             getgenv().ESP_Enabled = true  -- Aseguramos que ESP esté habilitado
         else
             -- Si el toggle está desactivado, desconectamos la conexión y deshabilitamos el ESP
