@@ -199,12 +199,15 @@ Tab:CreateParagraph({
     Content = "Cuando uses el Fov, primero debes elegir la cantidad de fov y luego presionarle en Lock Fov porque de otra manera el juego se crasheara, si quieres cambiar el fov despues, debes desactivar Lock Fov y volver a configurar el fov porque si no igual crashea / When you use the Fov, you must first choose the amount of fov and then press Lock Fov because otherwise the game will crash, if you want to change the fov after, you must disable Lock Fov and reconfigure the FOV because otherwise it might crash"
 })
 
+local RunService = game:GetService("RunService")
+
 -- Variables
-local FovValue = 70  -- Valor inicial del FOV
-local FovLocked = false  -- Estado del bloqueo
-local IsAdjustingSlider = false  -- Indicador para saber si el deslizador está siendo ajustado
-local OriginalFov = nil  -- Variable para almacenar el FOV original
-local PropertyChangedConnection = nil  -- Conexión del evento GetPropertyChangedSignal
+local FovValue = 70 -- Valor inicial del FOV
+local FovLocked = false -- Estado del bloqueo
+local IsAdjustingSlider = false -- Indica si se está usando el slider
+local OriginalFov = nil -- FOV original guardado
+local PropertyChangedConnection = nil -- Para evitar cambios externos al FOV
+local HeartbeatConnection = nil -- Optimización del bucle de control de FOV
 
 -- Crear deslizador FOV
 local Slider = Tab:CreateSlider({
@@ -215,20 +218,21 @@ local Slider = Tab:CreateSlider({
     CurrentValue = FovValue,
     Callback = function(Value)
         FovValue = Value
-        IsAdjustingSlider = true  -- Marcamos que se está ajustando el deslizador
+        IsAdjustingSlider = true
 
-        -- Si no está bloqueado, simplemente actualizamos el FOV
+        -- Solo actualiza si no está bloqueado
         if not FovLocked and workspace.CurrentCamera then
             workspace.CurrentCamera.FieldOfView = FovValue
         end
 
-        -- Desmarcar cuando termine de ajustar el deslizador
-        task.wait(0.1)  -- Tiempo de espera para asegurar que el ajuste terminó
-        IsAdjustingSlider = false
+        -- Pequeño retraso para marcar fin de ajuste
+        task.delay(0.1, function()
+            IsAdjustingSlider = false
+        end)
     end,
 })
 
--- Crear toggle Lock FOV
+-- Crear toggle para bloquear el FOV
 local Toggle = Tab:CreateToggle({
     Name = "Lock Fov",
     CurrentValue = false,
@@ -236,46 +240,41 @@ local Toggle = Tab:CreateToggle({
         FovLocked = Value
 
         if FovLocked and workspace.CurrentCamera then
-            -- Aplicamos el FOV y lo bloqueamos permanentemente
             workspace.CurrentCamera.FieldOfView = FovValue
+            OriginalFov = FovValue
 
-            -- Aquí desactivamos cualquier intento de cambiar el FOV
-            OriginalFov = workspace.CurrentCamera.FieldOfView
-            -- El valor nunca cambiará mientras esté bloqueado, aunque se modifique el slider
-            if PropertyChangedConnection then
-                PropertyChangedConnection:Disconnect()  -- Desconectar evento previo si existe
-            end
+            -- Previene cambios al FOV por otros scripts
+            if PropertyChangedConnection then PropertyChangedConnection:Disconnect() end
             PropertyChangedConnection = workspace.CurrentCamera:GetPropertyChangedSignal("FieldOfView"):Connect(function()
                 if FovLocked then
                     workspace.CurrentCamera.FieldOfView = OriginalFov
                 end
             end)
 
+            -- Optimización: Usar Heartbeat en lugar de bucle infinito
+            if not HeartbeatConnection then
+                HeartbeatConnection = RunService.Heartbeat:Connect(function()
+                    if FovLocked and workspace.CurrentCamera and not IsAdjustingSlider then
+                        workspace.CurrentCamera.FieldOfView = FovValue
+                    end
+                end)
+            end
+
         else
-            -- Si se desbloquea el FOV, eliminamos la protección
+            -- Si se desactiva el bloqueo, limpia las conexiones
             if PropertyChangedConnection then
-                PropertyChangedConnection:Disconnect()  -- Desconectar el evento si se desbloquea
+                PropertyChangedConnection:Disconnect()
                 PropertyChangedConnection = nil
+            end
+            if HeartbeatConnection then
+                HeartbeatConnection:Disconnect()
+                HeartbeatConnection = nil
             end
         end
     end,
 })
 
--- Bucle constante para asegurarnos de que el FOV no cambie nunca
-task.spawn(function()
-    while true do
-        task.wait(0.1)  -- Revisa cada 0.1 segundos
-
-        if FovLocked and workspace.CurrentCamera then
-            -- Evitamos interferir con el deslizador mientras se ajusta
-            if not IsAdjustingSlider then
-                workspace.CurrentCamera.FieldOfView = FovValue
-            end
-        end
-    end
-end)
-
--- Protección adicional para que el FOV no cambie si la cámara es reiniciada
+-- Si la cámara se reinicia (por muerte, respawn, etc), volver a aplicar el FOV
 workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
     if FovLocked and workspace.CurrentCamera then
         workspace.CurrentCamera.FieldOfView = FovValue
