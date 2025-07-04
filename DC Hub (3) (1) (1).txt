@@ -24,12 +24,20 @@ Tab:CreateParagraph({
     Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo puede tener errores o puedes saber que usas exploits / You should only run with the buttons with the character names indicated because otherwise you may have errors or you may know that you use exploits"
 })
 
-Tab:CreateButton({
-   Name = "Esp (All Players)",
-   CurrentValue = false,
-   Callback = function(Value)
-      loadstring(game:HttpGet("https://pastebin.com/raw/HsArk6W9"))()
-   end,
+Tab:CreateToggle({
+    Name = "Esp (All Players)",
+    CurrentValue = false,
+    Callback = function(state)
+        local success, espFunc = pcall(function()
+            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP.txt"))()
+        end)
+
+        if success and type(espFunc) == "function" then
+            espFunc(state)
+        else
+            warn("❌ Error al cargar el ESP desde la URL")
+        end
+    end,
 })
 
 Tab:CreateButton({
