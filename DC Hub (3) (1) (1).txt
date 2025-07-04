@@ -535,22 +535,32 @@ Tab:CreateToggle({
 })
 
 Tab:CreateToggle({
-    Name = "Infinite Jump",
+    Name = "Infinite Jump (Android)",
     CurrentValue = false,
-    Callback = function(Value)
-        if Value then
-            -- Activar: Cargar el script desde URL
+    Flag = "Infinite Jump",
+    Callback = function(state)
+        if state then
+            -- Activar el script desde una URL
+            getgenv().JumpBoostActive = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
         else
+            -- Detener todo cuando se apaga el toggle
+            getgenv().JumpBoostActive = false
+
+            -- Detener el bucle de salto
             if getgenv().JumpLoop then
                 getgenv().JumpLoop:Disconnect()
                 getgenv().JumpLoop = nil
             end
 
+            -- Eliminar el botón visual
             if getgenv().JumpGui then
                 getgenv().JumpGui:Destroy()
                 getgenv().JumpGui = nil
             end
+
+            -- Limpiar posibles toques activos
+            currentTouchInput = nil
         end
     end,
 })
