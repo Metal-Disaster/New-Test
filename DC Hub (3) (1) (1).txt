@@ -535,6 +535,27 @@ Tab:CreateToggle({
 })
 
 Tab:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Callback = function(Value)
+        if Value then
+            -- Activar: Cargar el script desde URL
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
+        else
+            if getgenv().JumpLoop then
+                getgenv().JumpLoop:Disconnect()
+                getgenv().JumpLoop = nil
+            end
+
+            if getgenv().JumpGui then
+                getgenv().JumpGui:Destroy()
+                getgenv().JumpGui = nil
+            end
+        end
+    end,
+})
+
+Tab:CreateToggle({
     Name = "No Fog + Fps",
     CurrentValue = false,
     Callback = function(state)
