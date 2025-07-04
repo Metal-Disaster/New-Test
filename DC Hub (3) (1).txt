@@ -555,41 +555,58 @@ Tab:CreateToggle({
     end,
 })
 
-local FPSBoostURL = "https://raw.githubusercontent.com/Metal-Disaster/FPS-Boost/refs/heads/main/FPS.txt" -- ⚠️ cambia por tu URL real
+local UltimateFPSURL = "https://raw.githubusercontent.com/Metal-Disaster/FPS-Boost/refs/heads/main/FPS.txt" -- Reemplaza con tu URL real
 
 Tab:CreateToggle({
-    Name = "FPS Boost",
+    Name = "Ultimate FPS Boost",
     CurrentValue = false,
     Callback = function(Value)
         if Value then
-            -- ✅ Activar FPS Boost desde URL externa
+            -- Activar Boost desde URL
             local success, err = pcall(function()
-                loadstring(game:HttpGet(FPSBoostURL))()
+                loadstring(game:HttpGet(UltimateFPSURL))()
             end)
             if not success then
-                warn("Error al cargar FPS Boost:", err)
+                warn("❌ Error al activar FPS Boost:", err)
             else
                 print("⚡ FPS Boost activado")
             end
         else
-            -- ✅ Desactivar y restaurar configuraciones
+            -- Restaurar configuraciones
             local Lighting = game:GetService("Lighting")
             local Terrain = workspace:FindFirstChildOfClass("Terrain")
+            local Players = game:GetService("Players")
+            local LocalPlayer = Players.LocalPlayer
             local original = getgenv().OriginalSettings
             local modified = getgenv().ModifiedObjects
 
             if original then
+                -- Restaurar Lighting
                 Lighting.GlobalShadows = original.GlobalShadows
                 Lighting.FogEnd = original.FogEnd
                 Lighting.Brightness = original.Brightness
 
+                -- Restaurar agua
                 if Terrain then
-                    Terrain.WaterWaveSize = original.WaterWaveSize
-                    Terrain.WaterReflectance = original.WaterReflectance
-                    Terrain.WaterTransparency = original.WaterTransparency
+                    Terrain.WaterWaveSize = original.WaterWaveSize or 0.1
+                    Terrain.WaterReflectance = original.WaterReflectance or 0.05
+                    Terrain.WaterTransparency = original.WaterTransparency or 0.5
+                end
+
+                -- Restaurar efectos eliminados del Lighting
+                for _, v in ipairs(original.Effects) do
+                    v.Parent = Lighting
+                end
+
+                -- Restaurar accesorios/ropa
+                if LocalPlayer and LocalPlayer.Character then
+                    for _, item in ipairs(original.Accessories) do
+                        item.Parent = LocalPlayer.Character
+                    end
                 end
             end
 
+            -- Restaurar objetos modificados
             if modified then
                 for _, entry in pairs(modified) do
                     if entry.object and entry.object.Parent then
@@ -598,7 +615,7 @@ Tab:CreateToggle({
                 end
             end
 
-            print("🔄 FPS Boost desactivado y restaurado correctamente")
+            print("🔄 Ultimate FPS Boost desactivado y restaurado")
         end
     end
 })
