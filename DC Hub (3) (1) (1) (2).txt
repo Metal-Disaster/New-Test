@@ -47,72 +47,56 @@ Tab:CreateToggle({
     end
 })
 
-local HitboxToggle = Tab:CreateToggle({
+local HitboxManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox.txt"))() -- Reemplaza con tu URL
+
+local Toggle = Tab:CreateToggle({
     Name = "Big Hitbox (For Chara)",
     CurrentValue = false,
-    Flag = "BigHitboxToggle", -- Opcional (para guardar el estado)
-    Callback = function(Value)
-        local success, setActive = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox.txt"))() -- 🔥 Reemplaza con tu URL
-        end)
-        
-        if success and setActive then
-            setActive(Value)
-        else
-            Rayfield:Notify({
-                Title = "Error",
-                Content = "No se pudo cargar el script de hitbox.",
-                Duration = 6.5,
-                Image = 4483362458,
-            })
-            HitboxToggle:Set(false) -- Desactiva si hay error
-        end
+    Flag = "HitboxToggle",
+    Callback = function(value)
+        HitboxManager:Toggle(value)
+        Rayfield:Notify({
+            Title = "Hitbox "..(value and "Activadas" or "Restauradas"),
+            Content = value and "Tamaño: 10,15,10" or "Volvió a lo normal",
+            Duration = 3
+        })
     end,
 })
 
-local HitboxToggle = Tab:CreateToggle({
-    Name = "Big Hitbox (For Chara)",
+local HitboxManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt"))() -- Reemplaza con tu URL
+
+local Toggle = Tab:CreateToggle({
+    Name = "Big Hitbox (For Vortex and Yuri)",
     CurrentValue = false,
-    Flag = "BigHitboxToggle", -- Opcional (para guardar el estado)
-    Callback = function(Value)
-        local success, setActive = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt"))() -- 🔥 Reemplaza con tu URL
-        end)
-        
-        if success and setActive then
-            setActive(Value)
-        else
-            Rayfield:Notify({
-                Title = "Error",
-                Content = "No se pudo cargar el script de hitbox.",
-                Duration = 6.5,
-                Image = 4483362458,
-            })
-            HitboxToggle:Set(false) -- Desactiva si hay error
-        end
+    Flag = "HitboxToggle",
+    Callback = function(value)
+        HitboxManager:Toggle(value)
+        Rayfield:Notify({
+            Title = "Hitbox "..(value and "Activadas" or "Restauradas"),
+            Content = value and "Tamaño: 10,15,10" or "Volvió a lo normal",
+            Duration = 3
+        })
     end,
 })
 
-local HitboxToggle = Tab:CreateToggle({
-    Name = "Big Hitbox (Survivors)",
+-- Auto-restauración al salir
+game:GetService("Players").LocalPlayer.OnTeleport:Connect(function()
+    HitboxManager:Toggle(false)
+end)
+
+local HitboxManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox2.txt"))() -- Reemplaza con tu URL
+
+local Toggle = Tab:CreateToggle({
+    Name = "Big Hitbox (For Survivors)",
     CurrentValue = false,
-    Flag = "BigHitboxToggle",
-    Callback = function(Value)
-        local success, setActive = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox2.txt"))()
-        end)
-        
-        if success and setActive then
-            setActive(Value)
-        else
-            Rayfield:Notify({
-                Title = "Error",
-                Content = "Failed to load hitbox script",
-                Duration = 6.5,
-                Image = 4483362458,
-            })
-            HitboxToggle:Set(false)
-        end
+    Flag = "HitboxToggle",
+    Callback = function(value)
+        HitboxManager:Toggle(value)
+        Rayfield:Notify({
+            Title = "Hitbox "..(value and "Activadas" or "Restauradas"),
+            Content = value and "Tamaño: 10,15,10" or "Volvió a lo normal",
+            Duration = 3
+        })
     end,
 })
 
