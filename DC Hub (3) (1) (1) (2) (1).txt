@@ -1,0 +1,563 @@
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "Test Hub | By Metal_Disaster",
+    LoadingTitle = "Test Hub",
+    LoadingSubtitle = "by Metal_Disaster",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "ProtectedHubData",
+        FileName = "Config"
+    },
+    Discord = {
+        Enabled = false
+    },
+    KeySystem = false
+})
+
+local Tab = Window:CreateTab("Main", 4483362458)
+
+Tab:CreateParagraph({
+    Title = "Nota / Note",
+    Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo puede tener errores o puedes saber que usas exploits / You should only run with the buttons with the character names indicated because otherwise you may have errors or you may know that you use exploits"
+})
+
+Tab:CreateToggle({
+    Name = "ESP (All Players)",
+    CurrentValue = false,
+    Callback = function(state)
+        if state then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
+            getgenv().ESP_Enabled = true  
+        else
+            if getgenv().ESP_Connection then
+                getgenv().ESP_Connection:Disconnect()
+            end
+            getgenv().ESP_Enabled = false 
+            for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
+                if p.Character then
+                    local char = p.Character
+                    local h = char:FindFirstChild("ESP_Highlight")
+                    local t = char:FindFirstChild("ESP_NameTag")
+                    if h then h:Destroy() end
+                    if t then t:Destroy() end
+                end
+            end
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Chara Applied.",
+            Duration = 3,
+            Image = nil,
+        })
+    end,
+}
+
+Tab:CreateButton({
+    Name = "Big Hitbox (For Vortex and Yuri)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Vortex and Yuri Applied.",
+            Duration = 3,
+            Image = nil,
+        })
+    end,
+})
+
+Tab:CreateButton({
+    Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox3.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Suevivors Applied.",
+            Duration = 3,
+            Image = nil,
+        })
+    end,
+})
+
+local Tab = Window:CreateTab("No CoolDowns", 4483362458)
+
+Tab:CreateParagraph({
+    Title = "Nota / Note",
+    Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo no funcionaran / You should only execute the buttons with the names of the characters indicated because otherwise they will not work"
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sonic",  
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/sMeSDW7s"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cream",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cream.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Vanilla",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Vanilla.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Eggman",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Eggman.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Bendy",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Bendy.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Boris",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Boris.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cuphead",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cuphead.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Mugman",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Mugman.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Monika",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Monika.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sayori",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sayori.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sans",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sans.txt"))()
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Frisk",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Frisk.txt"))()
+    end,
+})
+
+local Tab = Window:CreateTab("Extra", 4483362458)
+
+Tab:CreateParagraph({
+    Title = "Advertencia / Warning",
+    Content = "Cuando uses el Fov, primero debes elegir la cantidad de fov y luego presionarle en Lock Fov porque de otra manera el juego se crasheara, si quieres cambiar el fov despues, debes desactivar Lock Fov y volver a configurar el fov porque si no igual crashea / When you use the Fov, you must first choose the amount of fov and then press Lock Fov because otherwise the game will crash, if you want to change the fov after, you must disable Lock Fov and reconfigure the FOV because otherwise it might crash"
+})
+
+local RunService = game:GetService("RunService")
+
+local FovValue = 70 
+local FovLocked = false 
+local IsAdjustingSlider = false
+local OriginalFov = nil
+local PropertyChangedConnection = nil
+local HeartbeatConnection = nil
+
+
+Tab:CreateSlider({
+    Name = "Fov",
+    Range = {1, 120},
+    Increment = 1,
+    Suffix = " FOV",
+    CurrentValue = FovValue,
+    Callback = function(Value)
+        FovValue = Value
+        IsAdjustingSlider = true
+
+        if not FovLocked and workspace.CurrentCamera then
+            workspace.CurrentCamera.FieldOfView = FovValue
+        end
+
+        task.delay(0.1, function()
+            IsAdjustingSlider = false
+        end)
+    end,
+})
+
+Tab:CreateToggle({
+    Name = "Lock Fov",
+    CurrentValue = false,
+    Callback = function(Value)
+        FovLocked = Value
+
+        if FovLocked and workspace.CurrentCamera then
+            workspace.CurrentCamera.FieldOfView = FovValue
+            OriginalFov = FovValue
+
+            if PropertyChangedConnection then PropertyChangedConnection:Disconnect() end
+            PropertyChangedConnection = workspace.CurrentCamera:GetPropertyChangedSignal("FieldOfView"):Connect(function()
+                if FovLocked then
+                    workspace.CurrentCamera.FieldOfView = OriginalFov
+                end
+            end)
+
+            if not HeartbeatConnection then
+                HeartbeatConnection = RunService.Heartbeat:Connect(function()
+                    if FovLocked and workspace.CurrentCamera and not IsAdjustingSlider then
+                        workspace.CurrentCamera.FieldOfView = FovValue
+                    end
+                end)
+            end
+
+        else
+
+            if PropertyChangedConnection then
+                PropertyChangedConnection:Disconnect()
+                PropertyChangedConnection = nil
+            end
+            if HeartbeatConnection then
+                HeartbeatConnection:Disconnect()
+                HeartbeatConnection = nil
+            end
+        end
+    end,
+})
+
+workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+    if FovLocked and workspace.CurrentCamera then
+        workspace.CurrentCamera.FieldOfView = FovValue
+    end
+end)
+
+Tab:CreateButton({
+    Name = "Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end,
+})
+
+local lighting = game:GetService("Lighting")
+
+local originalSettings = {}
+local originalEffects = {}
+local shaderLoopRunning = false
+local shaderLoopThread = nil
+
+local function backupOriginalLighting()
+    originalSettings = {
+        Ambient = lighting.Ambient,
+        OutdoorAmbient = lighting.OutdoorAmbient,
+        Brightness = lighting.Brightness,
+        GlobalShadows = lighting.GlobalShadows,
+        EnvironmentDiffuseScale = lighting.EnvironmentDiffuseScale,
+        EnvironmentSpecularScale = lighting.EnvironmentSpecularScale,
+        Technology = lighting.Technology,
+    }
+
+    originalEffects = {}
+    for _, effect in pairs(lighting:GetChildren()) do
+        if effect:IsA("PostEffect") and not effect.Name:match("^Shader_") then
+            table.insert(originalEffects, effect:Clone())
+        end
+    end
+end
+
+local function applyShaderLoop()
+    while shaderLoopRunning do
+        for _, v in pairs(lighting:GetChildren()) do
+            if v:IsA("PostEffect") and not v.Name:match("^Shader_") then
+                v.Enabled = false
+            end
+        end
+
+        lighting.Technology = Enum.Technology.Future
+        lighting.Ambient = Color3.fromRGB(150, 150, 150)
+        lighting.OutdoorAmbient = Color3.fromRGB(120, 120, 120)
+        lighting.Brightness = 1
+        lighting.GlobalShadows = true
+        lighting.EnvironmentDiffuseScale = 1.5
+        lighting.EnvironmentSpecularScale = 1.5
+
+        local function createOrUpdate(className, name, props)
+            local fx = lighting:FindFirstChild(name)
+            if not fx then
+                fx = Instance.new(className)
+                fx.Name = name
+                fx.Parent = lighting
+            end
+            for prop, val in pairs(props) do
+                fx[prop] = val
+            end
+        end
+
+        createOrUpdate("BloomEffect", "Shader_Bloom", {
+            Intensity = 0.5,
+            Size = 24,
+            Threshold = 1
+        })
+
+        createOrUpdate("BlurEffect", "Shader_Blur", {
+            Size = 2
+        })
+
+        createOrUpdate("ColorCorrectionEffect", "Shader_CC", {
+            Brightness = 0.1,
+            Contrast = 0.2,
+            Saturation = 0.15
+        })
+
+        createOrUpdate("SunRaysEffect", "Shader_SunRays", {
+            Intensity = 0.15,
+            Spread = 1
+        })
+
+        createOrUpdate("DepthOfFieldEffect", "Shader_DOF", {
+            FarIntensity = 0.08,
+            FocusDistance = 50,
+            NearIntensity = 0.1
+        })
+
+        task.wait(1)
+    end
+end
+
+local function restoreOriginalLighting()
+    for prop, val in pairs(originalSettings) do
+        lighting[prop] = val
+    end
+
+    for _, v in pairs(lighting:GetChildren()) do
+        if v:IsA("PostEffect") and v.Name:match("^Shader_") then
+            v:Destroy()
+        end
+    end
+
+    for _, effect in pairs(originalEffects) do
+        local restored = effect:Clone()
+        restored.Parent = lighting
+    end
+end
+
+Tab:CreateToggle({
+    Name = "Shaders (NaturaltIdiot)",
+    CurrentValue = false,
+    Flag = "ShaderToggle",
+    Callback = function(state)
+        if state then
+            backupOriginalLighting()
+            shaderLoopRunning = true
+            shaderLoopThread = task.spawn(applyShaderLoop)
+            print("Shaders activados")
+        else
+            shaderLoopRunning = false
+            task.wait(0.2)
+            restoreOriginalLighting()
+            print("Shaders desactivados")
+        end
+    end
+})
+
+local originalVolumes = {
+    current = nil,
+    chaseTheme = nil,
+    menu = nil,
+    selection = nil,
+}
+
+local noMusicEnabled = false
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local player = Players.LocalPlayer
+
+local heartbeatConnection = nil
+local volumeChangedConnections = {}
+
+local function forceMuteSound(sound, originalVolumesTable, key)
+    if not sound or not sound:IsA("Sound") then return end
+
+    if not originalVolumesTable[key] then
+        originalVolumesTable[key] = sound.Volume
+    end
+
+    sound.Volume = 0
+
+    if volumeChangedConnections[key] then
+        volumeChangedConnections[key]:Disconnect()
+    end
+    volumeChangedConnections[key] = sound:GetPropertyChangedSignal("Volume"):Connect(function()
+        if noMusicEnabled and sound.Volume ~= 0 then
+            sound.Volume = 0
+        end
+    end)
+end
+
+local function restoreSound(sound, originalVolumesTable, key)
+    if not sound or not sound:IsA("Sound") then return end
+
+    if originalVolumesTable[key] then
+        sound.Volume = originalVolumesTable[key]
+    end
+
+    if volumeChangedConnections[key] then
+        volumeChangedConnections[key]:Disconnect()
+        volumeChangedConnections[key] = nil
+    end
+end
+
+local function constantlyMute()
+    if heartbeatConnection then
+        heartbeatConnection:Disconnect()
+        heartbeatConnection = nil
+    end
+
+    heartbeatConnection = RunService.Heartbeat:Connect(function()
+        if not noMusicEnabled then return end
+
+        local playerGui = player:FindFirstChild("PlayerGui")
+        local soundtracks = playerGui and playerGui:FindFirstChild("soundtracks")
+        local currentSound = soundtracks and soundtracks:FindFirstChild("current")
+        forceMuteSound(currentSound, originalVolumes, "current")
+
+        local mainGui = playerGui and playerGui:FindFirstChild("maingui")
+        local moduleStarter = mainGui and mainGui:FindFirstChild("ModuleStarter")
+        local chaseHandler = moduleStarter and moduleStarter:FindFirstChild("ChaseHandler")
+        local chaseTheme = chaseHandler and chaseHandler:FindFirstChild("ChaseTheme")
+        forceMuteSound(chaseTheme, originalVolumes, "chaseTheme")
+
+        local menuSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("Menu")
+        forceMuteSound(menuSound, originalVolumes, "menu")
+
+        local selectionSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("selection")
+        forceMuteSound(selectionSound, originalVolumes, "selection")
+    end)
+end
+
+constantlyMute()
+
+Tab:CreateToggle({
+    Name = "No Music",
+    CurrentValue = false,
+    Callback = function(Value)
+        noMusicEnabled = Value
+
+        local playerGui = player:FindFirstChild("PlayerGui")
+        local soundtracks = playerGui and playerGui:FindFirstChild("soundtracks")
+        local currentSound = soundtracks and soundtracks:FindFirstChild("current")
+
+        local mainGui = playerGui and playerGui:FindFirstChild("maingui")
+        local moduleStarter = mainGui and mainGui:FindFirstChild("ModuleStarter")
+        local chaseHandler = moduleStarter and moduleStarter:FindFirstChild("ChaseHandler")
+        local chaseTheme = chaseHandler and chaseHandler:FindFirstChild("ChaseTheme")
+
+        local menuSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("Menu")
+        local selectionSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("selection")
+
+        if not Value then
+            restoreSound(currentSound, originalVolumes, "current")
+            restoreSound(chaseTheme, originalVolumes, "chaseTheme")
+            restoreSound(menuSound, originalVolumes, "menu")
+            restoreSound(selectionSound, originalVolumes, "selection")
+        else
+            forceMuteSound(currentSound, originalVolumes, "current")
+            forceMuteSound(chaseTheme, originalVolumes, "chaseTheme")
+            forceMuteSound(menuSound, originalVolumes, "menu")
+            forceMuteSound(selectionSound, originalVolumes, "selection")
+        end
+    end,
+})
+
+Tab:CreateToggle({
+    Name = "Infinite Jump (Android)",
+    CurrentValue = false,
+    Flag = "Infinite Jump",
+    Callback = function(state)
+        if state then
+            getgenv().JumpBoostActive = true
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
+        else
+            getgenv().JumpBoostActive = false
+
+            if getgenv().JumpLoop then
+                getgenv().JumpLoop:Disconnect()
+                getgenv().JumpLoop = nil
+            end
+
+            if getgenv().JumpGui then
+                getgenv().JumpGui:Destroy()
+                getgenv().JumpGui = nil
+            end
+
+            currentTouchInput = nil
+        end
+    end,
+})
+
+Tab:CreateToggle({
+    Name = "No Fog + Fps",
+    CurrentValue = false,
+    Callback = function(state)
+        if state then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-Fog-FPS/refs/heads/main/Gama%20baja%201.txt"))()
+        else
+            if getgenv().BalancedPlusOriginal then
+                local Lighting = game:GetService("Lighting")
+                local Terrain = workspace:FindFirstChildOfClass("Terrain")
+
+                Lighting.GlobalShadows = getgenv().BalancedPlusOriginal.GlobalShadows
+                Lighting.FogEnd = getgenv().BalancedPlusOriginal.FogEnd
+                Lighting.Brightness = getgenv().BalancedPlusOriginal.Brightness
+
+                if Terrain then
+                    Terrain.WaterWaveSize = getgenv().BalancedPlusOriginal.WaterWaveSize
+                    Terrain.WaterReflectance = getgenv().BalancedPlusOriginal.WaterReflectance
+                    Terrain.WaterTransparency = getgenv().BalancedPlusOriginal.WaterTransparency
+                end
+
+                for _, e in ipairs(getgenv().BalancedPlusOriginal.Effects) do
+                    e.Parent = Lighting
+                end
+            end
+
+            if getgenv().BalancedPlusModified then
+                for _, data in ipairs(getgenv().BalancedPlusModified) do
+                    if data.object and data.object.Parent then
+                        data.object[data.property] = data.original
+                    end
+                end
+            end
+
+            print("Balanced+ FPS Boost DESACTIVADO")
+        end
+    end
+})
