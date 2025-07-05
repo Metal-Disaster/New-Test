@@ -57,6 +57,7 @@ Tab:CreateButton({
             Duration = 3,
             Image = nil,
         })
+
     end,
 }
 
@@ -70,6 +71,7 @@ Tab:CreateButton({
             Duration = 3,
             Image = nil,
         })
+
     end,
 })
 
@@ -83,6 +85,7 @@ Tab:CreateButton({
             Duration = 3,
             Image = nil,
         })
+
     end,
 })
 
