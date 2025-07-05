@@ -59,7 +59,7 @@ Tab:CreateButton({
         })
 
     end,
-}
+})
 
 Tab:CreateButton({
     Name = "Big Hitbox (For Vortex and Yuri)",  -- Texto que aparece en el botÃƒÂ³n
