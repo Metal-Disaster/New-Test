@@ -60,11 +60,17 @@ Tab:CreateToggle({
 	end,
 })
 
-Tab:CreateButton({
-    Name = "Big Hitbox (For Exe)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox1.txt"))()
-    end,
+Tab:CreateToggle({
+	Name = "Big Hitbox (For Vortex and Yuri)",
+	CurrentValue = false,
+	Callback = function(state)
+		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox1.txt"))()
+		if state then
+			loaded.startHitboxScript()
+		else
+			loaded.stopHitboxScript()
+		end
+	end,
 })
 
 Tab:CreateButton({
