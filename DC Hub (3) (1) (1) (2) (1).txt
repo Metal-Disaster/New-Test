@@ -51,6 +51,7 @@ Tab:CreateButton({
     Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox.txt'))()
+
     Rayfield:Notify({
             Title = "¡Ready!",
             Content = "Big Hitbox For Chara Applied.",
@@ -65,6 +66,7 @@ Tab:CreateButton({
     Name = "Big Hitbox (For Vortex and Yuri)",  -- Texto que aparece en el botÃƒÂ³n
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt'))()
+
     Rayfield:Notify({
             Title = "¡Ready!",
             Content = "Big Hitbox For Vortex and Yuri Applied.",
@@ -79,6 +81,7 @@ Tab:CreateButton({
     Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox3.txt'))()
+
     Rayfield:Notify({
             Title = "¡Ready!",
             Content = "Big Hitbox For Suevivors Applied.",
