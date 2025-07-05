@@ -319,13 +319,6 @@ Tab:CreateSlider({
 		if getgenv().FovController and getgenv().FovController.SetFov then
 			getgenv().FovController.SetFov(Value)
 		end
-
-		Rayfield:Notify({
-			Title = "!Ready¡",
-			Content = "Fov Ajusted",
-			Duration = 3,
-			Image = nil,
-		})
 	end,
 })
 
