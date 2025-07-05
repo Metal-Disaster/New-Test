@@ -47,55 +47,41 @@ Tab:CreateToggle({
     end
 })
 
-local HitboxManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox.txt"))() -- Reemplaza con tu URL
+Tab:CreateButton({
+    Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Chara Applied.",
+            Duration = 3,
+            Image = nil,
+        })
+    end,
+}
 
-local Toggle = Tab:CreateToggle({
-    Name = "Big Hitbox (For Chara)",
-    CurrentValue = false,
-    Flag = "HitboxToggle",
-    Callback = function(value)
-        HitboxManager:Toggle(value)
-        Rayfield:Notify({
-            Title = "Hitbox "..(value and "Activadas" or "Restauradas"),
-            Content = value and "Tamaño: 10,15,10" or "Volvió a lo normal",
-            Duration = 3
+Tab:CreateButton({
+    Name = "Big Hitbox (For Vortex and Yuri)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Vortex and Yuri Applied.",
+            Duration = 3,
+            Image = nil,
         })
     end,
 })
 
-local HitboxManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt"))() -- Reemplaza con tu URL
-
-local Toggle = Tab:CreateToggle({
-    Name = "Big Hitbox (For Vortex and Yuri)",
-    CurrentValue = false,
-    Flag = "HitboxToggle",
-    Callback = function(value)
-        HitboxManager:Toggle(value)
-        Rayfield:Notify({
-            Title = "Hitbox "..(value and "Activadas" or "Restauradas"),
-            Content = value and "Tamaño: 10,15,10" or "Volvió a lo normal",
-            Duration = 3
-        })
-    end,
-})
-
--- Auto-restauración al salir
-game:GetService("Players").LocalPlayer.OnTeleport:Connect(function()
-    HitboxManager:Toggle(false)
-end)
-
-local HitboxManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox2.txt"))() -- Reemplaza con tu URL
-
-local Toggle = Tab:CreateToggle({
-    Name = "Big Hitbox (For Survivors)",
-    CurrentValue = false,
-    Flag = "HitboxToggle",
-    Callback = function(value)
-        HitboxManager:Toggle(value)
-        Rayfield:Notify({
-            Title = "Hitbox "..(value and "Activadas" or "Restauradas"),
-            Content = value and "Tamaño: 10,15,10" or "Volvió a lo normal",
-            Duration = 3
+Tab:CreateButton({
+    Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox3.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Suevivors Applied.",
+            Duration = 3,
+            Image = nil,
         })
     end,
 })
