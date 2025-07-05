@@ -73,11 +73,17 @@ Tab:CreateToggle({
 	end,
 })
 
-Tab:CreateButton({
-    Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox2.txt"))()
-    end,
+Tab:CreateToggle({
+	Name = "Big Hitbox (For Survivors)",
+	CurrentValue = false,
+	Callback = function(state)
+		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox2.txt"))()
+		if state then
+			loaded.startHitboxScript()
+		else
+			loaded.stopHitboxScript()
+		end
+	end,
 })
 
 local Tab = Window:CreateTab("No CoolDowns", 4483362458)
