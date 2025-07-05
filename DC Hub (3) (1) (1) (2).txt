@@ -48,16 +48,22 @@ Tab:CreateToggle({
 })
 
 Tab:CreateToggle({
-	Name = "Big Hitbox (For Chara)",
-	CurrentValue = false,
-	Callback = function(state)
-		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox3.txt"))()
-		if state then
-			loaded.startHitboxScript()
-		else
-			loaded.stopHitboxScript()
-		end
-	end,
+    Name = "Big Hitbox (For Chara)",
+    CurrentValue = false,
+    Flag = "BigHitboxToggle",
+    Callback = function(Value)
+        if Value then
+            local success, errorMsg = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox3.txt"))()
+            end)
+            if not success then
+                warn("Error al cargar el script: " .. errorMsg)
+                Toggle:Set(false) -- Desactiva el toggle si falla
+            end
+        else
+            game:GetService("Players").LocalPlayer.Character:BreakJoints()
+        end
+    end
 })
 
 Tab:CreateToggle({
