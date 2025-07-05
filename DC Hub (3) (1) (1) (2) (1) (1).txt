@@ -338,7 +338,7 @@ Tab:CreateButton({
 })
 
 -- ⬇️ Carga el script desde Pastebin o GitHub
-loadstring(game:HttpGet("https://pastebin.com/raw/TU_ID_AQUÍ"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Shader.txt"))()
 
 -- 🎛️ Toggle para shaders
 Tab:CreateToggle({
@@ -382,115 +382,35 @@ end)
 	end
 })
 
-local originalVolumes = {
-    current = nil,
-    chaseTheme = nil,
-    menu = nil,
-    selection = nil,
-}
+-- Carga el script desde Pastebin (reemplaza con tu URL)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Music.txt"))()
 
-local noMusicEnabled = false
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local StarterGui = game:GetService("StarterGui")
-local player = Players.LocalPlayer
-
-local heartbeatConnection = nil
-local volumeChangedConnections = {}
-
-local function forceMuteSound(sound, originalVolumesTable, key)
-    if not sound or not sound:IsA("Sound") then return end
-
-    if not originalVolumesTable[key] then
-        originalVolumesTable[key] = sound.Volume
-    end
-
-    sound.Volume = 0
-
-    if volumeChangedConnections[key] then
-        volumeChangedConnections[key]:Disconnect()
-    end
-    volumeChangedConnections[key] = sound:GetPropertyChangedSignal("Volume"):Connect(function()
-        if noMusicEnabled and sound.Volume ~= 0 then
-            sound.Volume = 0
-        end
-    end)
-end
-
-local function restoreSound(sound, originalVolumesTable, key)
-    if not sound or not sound:IsA("Sound") then return end
-
-    if originalVolumesTable[key] then
-        sound.Volume = originalVolumesTable[key]
-    end
-
-    if volumeChangedConnections[key] then
-        volumeChangedConnections[key]:Disconnect()
-        volumeChangedConnections[key] = nil
-    end
-end
-
-local function constantlyMute()
-    if heartbeatConnection then
-        heartbeatConnection:Disconnect()
-        heartbeatConnection = nil
-    end
-
-    heartbeatConnection = RunService.Heartbeat:Connect(function()
-        if not noMusicEnabled then return end
-
-        local playerGui = player:FindFirstChild("PlayerGui")
-        local soundtracks = playerGui and playerGui:FindFirstChild("soundtracks")
-        local currentSound = soundtracks and soundtracks:FindFirstChild("current")
-        forceMuteSound(currentSound, originalVolumes, "current")
-
-        local mainGui = playerGui and playerGui:FindFirstChild("maingui")
-        local moduleStarter = mainGui and mainGui:FindFirstChild("ModuleStarter")
-        local chaseHandler = moduleStarter and moduleStarter:FindFirstChild("ChaseHandler")
-        local chaseTheme = chaseHandler and chaseHandler:FindFirstChild("ChaseTheme")
-        forceMuteSound(chaseTheme, originalVolumes, "chaseTheme")
-
-        local menuSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("Menu")
-        forceMuteSound(menuSound, originalVolumes, "menu")
-
-        local selectionSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("selection")
-        forceMuteSound(selectionSound, originalVolumes, "selection")
-    end)
-end
-
-constantlyMute()
-
+-- Toggle para No Music
 Tab:CreateToggle({
-    Name = "No Music",
-    CurrentValue = false,
-    Callback = function(Value)
-        noMusicEnabled = Value
+	Name = "No Music",
+	CurrentValue = false,
+	Callback = function(Value)
+		local ctrl = getgenv().NoMusicController
+		if ctrl and ctrl.toggleMusic then
+			ctrl.toggleMusic(Value)
+		end
 
-        local playerGui = player:FindFirstChild("PlayerGui")
-        local soundtracks = playerGui and playerGui:FindFirstChild("soundtracks")
-        local currentSound = soundtracks and soundtracks:FindFirstChild("current")
-
-        local mainGui = playerGui and playerGui:FindFirstChild("maingui")
-        local moduleStarter = mainGui and mainGui:FindFirstChild("ModuleStarter")
-        local chaseHandler = moduleStarter and moduleStarter:FindFirstChild("ChaseHandler")
-        local chaseTheme = chaseHandler and chaseHandler:FindFirstChild("ChaseTheme")
-
-        local menuSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("Menu")
-        local selectionSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("selection")
-
-        if not Value then
-            restoreSound(currentSound, originalVolumes, "current")
-            restoreSound(chaseTheme, originalVolumes, "chaseTheme")
-            restoreSound(menuSound, originalVolumes, "menu")
-            restoreSound(selectionSound, originalVolumes, "selection")
-        else
-            forceMuteSound(currentSound, originalVolumes, "current")
-            forceMuteSound(chaseTheme, originalVolumes, "chaseTheme")
-            forceMuteSound(menuSound, originalVolumes, "menu")
-            forceMuteSound(selectionSound, originalVolumes, "selection")
-        end
-    end,
+		if Value then
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "All Music Muted",
+				Duration = 3
+			})
+		else
+			Rayfield:Notify({
+				Title = "Disable",
+				Content = "Music Restored",
+				Duration = 3
+			})
+		end
+	end,
 })
+
 
 Tab:CreateToggle({
     Name = "Infinite Jump (Android)",
