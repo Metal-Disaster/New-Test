@@ -1,14 +1,12 @@
--- Ã°Å¸â€œÂ¦ Cargar Rayfield UI Library
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
--- Ã°Å¸Å½Â® Crear la ventana principal del menÃƒÂº
 local Window = Rayfield:CreateWindow({
     Name = "Test Hub | By Metal_Disaster",
     LoadingTitle = "Test Hub",
     LoadingSubtitle = "by Metal_Disaster",
     ConfigurationSaving = {
         Enabled = true,
-        FolderName = "ProtectedHubData", -- opcional
+        FolderName = "ProtectedHubData",
         FileName = "Config"
     },
     Discord = {
@@ -17,7 +15,7 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false
 })
 
-local Tab = Window:CreateTab("Main", 4483362458) -- Icono opcional (ID de imagen de Roblox)
+local Tab = Window:CreateTab("Main", 4483362458)
 
 Tab:CreateParagraph({
     Title = "Nota / Note",
@@ -29,19 +27,15 @@ Tab:CreateToggle({
     CurrentValue = false,
     Callback = function(state)
         if state then
-            -- Si el toggle está activado, cargamos el script de ESP
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
-            getgenv().ESP_Enabled = true  -- Aseguramos que ESP esté habilitado
+            getgenv().ESP_Enabled = true  
         else
-            -- Si el toggle está desactivado, desconectamos la conexión y deshabilitamos el ESP
             if getgenv().ESP_Connection then
-                getgenv().ESP_Connection:Disconnect()  -- Detenemos la conexión que se está ejecutando
+                getgenv().ESP_Connection:Disconnect()
             end
-            getgenv().ESP_Enabled = false  -- Desactivamos ESP
-            -- Eliminar ESP de todos los jugadores actuales
+            getgenv().ESP_Enabled = false 
             for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
                 if p.Character then
-                    -- Eliminamos los Highlights y los NameTags de los personajes
                     local char = p.Character
                     local h = char:FindFirstChild("ESP_Highlight")
                     local t = char:FindFirstChild("ESP_NameTag")
@@ -54,75 +48,27 @@ Tab:CreateToggle({
 })
 
 Tab:CreateButton({
-    Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
+    Name = "Big Hitbox (For Chara)",
     Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerName = player.Name
-
--- Extensiones para modificar hitboxes de todos los jugadores
-local hitboxModule = workspace:WaitForChild("gameInstance"):WaitForChild("hitBoxModule")
-local playersFolder = hitboxModule:WaitForChild("Players")
-
-for _, playerInFolder in ipairs(playersFolder:GetChildren()) do
-    local hitFolder = playerInFolder:FindFirstChild("HitFolder")
-    if hitFolder then
-        local collision = hitFolder:FindFirstChild("collision")
-        if collision then
-            collision.Size = Vector3.new(10, 15, 10)
-        end
-    end
-end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox.txt"))()
     end,
 })
 
 Tab:CreateButton({
-    Name = "Big Hitbox (For Exe)",  -- Texto que aparece en el botÃƒÂ³n
+    Name = "Big Hitbox (For Exe)",
     Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerName = player.Name
-
--- Extensiones para modificar hitboxes de todos los jugadores
-local hitboxModule = workspace:WaitForChild("gameInstance"):WaitForChild("hitBoxModule")
-local playersFolder = hitboxModule:WaitForChild("Players")
-
-for _, playerInFolder in ipairs(playersFolder:GetChildren()) do
-    local hitFolder = playerInFolder:FindFirstChild("HitFolder")
-    if hitFolder then
-        local collision = hitFolder:FindFirstChild("collision")
-        if collision then
-            collision.Size = Vector3.new(20, 15, 20)
-        end
-    end
-end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox1.txt"))()
     end,
 })
 
 Tab:CreateButton({
     Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
     Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerName = player.Name
-
--- Extensiones para modificar hitboxes de todos los jugadores
-local hitboxModule = workspace:WaitForChild("gameInstance"):WaitForChild("hitBoxModule")
-local playersFolder = hitboxModule:WaitForChild("Players")
-
-for _, playerInFolder in ipairs(playersFolder:GetChildren()) do
-    local hitFolder = playerInFolder:FindFirstChild("HitFolder")
-    if hitFolder then
-        local collision = hitFolder:FindFirstChild("collision")
-        if collision then
-            collision.Size = Vector3.new(30, 10, 30)
-        end
-    end
-end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox2.txt"))()
     end,
 })
 
-local Tab = Window:CreateTab("No CoolDowns", 4483362458) -- Icono opcional (ID de imagen de Roblox)
+local Tab = Window:CreateTab("No CoolDowns", 4483362458)
 
 Tab:CreateParagraph({
     Title = "Nota / Note",
@@ -222,16 +168,15 @@ Tab:CreateParagraph({
 
 local RunService = game:GetService("RunService")
 
--- Variables
-local FovValue = 70 -- Valor inicial del FOV
-local FovLocked = false -- Estado del bloqueo
-local IsAdjustingSlider = false -- Indica si se está usando el slider
-local OriginalFov = nil -- FOV original guardado
-local PropertyChangedConnection = nil -- Para evitar cambios externos al FOV
-local HeartbeatConnection = nil -- Optimización del bucle de control de FOV
+local FovValue = 70 
+local FovLocked = false 
+local IsAdjustingSlider = false
+local OriginalFov = nil
+local PropertyChangedConnection = nil
+local HeartbeatConnection = nil
 
--- Crear deslizador FOV
-local Slider = Tab:CreateSlider({
+
+Tab:CreateSlider({
     Name = "Fov",
     Range = {1, 120},
     Increment = 1,
@@ -241,20 +186,17 @@ local Slider = Tab:CreateSlider({
         FovValue = Value
         IsAdjustingSlider = true
 
-        -- Solo actualiza si no está bloqueado
         if not FovLocked and workspace.CurrentCamera then
             workspace.CurrentCamera.FieldOfView = FovValue
         end
 
-        -- Pequeño retraso para marcar fin de ajuste
         task.delay(0.1, function()
             IsAdjustingSlider = false
         end)
     end,
 })
 
--- Crear toggle para bloquear el FOV
-local Toggle = Tab:CreateToggle({
+Tab:CreateToggle({
     Name = "Lock Fov",
     CurrentValue = false,
     Callback = function(Value)
@@ -264,7 +206,6 @@ local Toggle = Tab:CreateToggle({
             workspace.CurrentCamera.FieldOfView = FovValue
             OriginalFov = FovValue
 
-            -- Previene cambios al FOV por otros scripts
             if PropertyChangedConnection then PropertyChangedConnection:Disconnect() end
             PropertyChangedConnection = workspace.CurrentCamera:GetPropertyChangedSignal("FieldOfView"):Connect(function()
                 if FovLocked then
@@ -272,7 +213,6 @@ local Toggle = Tab:CreateToggle({
                 end
             end)
 
-            -- Optimización: Usar Heartbeat en lugar de bucle infinito
             if not HeartbeatConnection then
                 HeartbeatConnection = RunService.Heartbeat:Connect(function()
                     if FovLocked and workspace.CurrentCamera and not IsAdjustingSlider then
@@ -282,7 +222,7 @@ local Toggle = Tab:CreateToggle({
             end
 
         else
-            -- Si se desactiva el bloqueo, limpia las conexiones
+
             if PropertyChangedConnection then
                 PropertyChangedConnection:Disconnect()
                 PropertyChangedConnection = nil
@@ -295,14 +235,12 @@ local Toggle = Tab:CreateToggle({
     end,
 })
 
--- Si la cámara se reinicia (por muerte, respawn, etc), volver a aplicar el FOV
 workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
     if FovLocked and workspace.CurrentCamera then
         workspace.CurrentCamera.FieldOfView = FovValue
     end
 end)
 
--- === BOTÓN: Infinite Yield ===
 Tab:CreateButton({
     Name = "Infinite Yield",
     Callback = function()
@@ -317,7 +255,6 @@ local originalEffects = {}
 local shaderLoopRunning = false
 local shaderLoopThread = nil
 
--- Guarda configuración original
 local function backupOriginalLighting()
     originalSettings = {
         Ambient = lighting.Ambient,
@@ -337,7 +274,6 @@ local function backupOriginalLighting()
     end
 end
 
--- Aplica efectos personalizados en bucle
 local function applyShaderLoop()
     while shaderLoopRunning do
         for _, v in pairs(lighting:GetChildren()) do
@@ -397,7 +333,6 @@ local function applyShaderLoop()
     end
 end
 
--- Restaura configuración original
 local function restoreOriginalLighting()
     for prop, val in pairs(originalSettings) do
         lighting[prop] = val
@@ -415,7 +350,6 @@ local function restoreOriginalLighting()
     end
 end
 
--- 🔘 INSÉRTALO en tu propia Tab:
 Tab:CreateToggle({
     Name = "Shaders (NaturaltIdiot)",
     CurrentValue = false,
@@ -425,12 +359,12 @@ Tab:CreateToggle({
             backupOriginalLighting()
             shaderLoopRunning = true
             shaderLoopThread = task.spawn(applyShaderLoop)
-            print("✅ Shaders activados")
+            print("Shaders activados")
         else
             shaderLoopRunning = false
             task.wait(0.2)
             restoreOriginalLighting()
-            print("❌ Shaders desactivados")
+            print("Shaders desactivados")
         end
     end
 })
@@ -492,51 +426,42 @@ local function constantlyMute()
     heartbeatConnection = RunService.Heartbeat:Connect(function()
         if not noMusicEnabled then return end
 
-        -- current
         local playerGui = player:FindFirstChild("PlayerGui")
         local soundtracks = playerGui and playerGui:FindFirstChild("soundtracks")
         local currentSound = soundtracks and soundtracks:FindFirstChild("current")
         forceMuteSound(currentSound, originalVolumes, "current")
 
-        -- chaseTheme
         local mainGui = playerGui and playerGui:FindFirstChild("maingui")
         local moduleStarter = mainGui and mainGui:FindFirstChild("ModuleStarter")
         local chaseHandler = moduleStarter and moduleStarter:FindFirstChild("ChaseHandler")
         local chaseTheme = chaseHandler and chaseHandler:FindFirstChild("ChaseTheme")
         forceMuteSound(chaseTheme, originalVolumes, "chaseTheme")
 
-        -- Menu (en StarterGui)
         local menuSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("Menu")
         forceMuteSound(menuSound, originalVolumes, "menu")
 
-        -- selection (en StarterGui)
         local selectionSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("selection")
         forceMuteSound(selectionSound, originalVolumes, "selection")
     end)
 end
 
--- Inicia el muteo continuo
 constantlyMute()
 
--- Toggle Rayfield
 Tab:CreateToggle({
     Name = "No Music",
     CurrentValue = false,
     Callback = function(Value)
         noMusicEnabled = Value
 
-        -- current
         local playerGui = player:FindFirstChild("PlayerGui")
         local soundtracks = playerGui and playerGui:FindFirstChild("soundtracks")
         local currentSound = soundtracks and soundtracks:FindFirstChild("current")
 
-        -- chaseTheme
         local mainGui = playerGui and playerGui:FindFirstChild("maingui")
         local moduleStarter = mainGui and mainGui:FindFirstChild("ModuleStarter")
         local chaseHandler = moduleStarter and moduleStarter:FindFirstChild("ChaseHandler")
         local chaseTheme = chaseHandler and chaseHandler:FindFirstChild("ChaseTheme")
 
-        -- menu y selection desde StarterGui
         local menuSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("Menu")
         local selectionSound = StarterGui:FindFirstChild("soundtracks") and StarterGui.soundtracks:FindFirstChild("selection")
 
@@ -560,26 +485,21 @@ Tab:CreateToggle({
     Flag = "Infinite Jump",
     Callback = function(state)
         if state then
-            -- Activar el script desde una URL
             getgenv().JumpBoostActive = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
         else
-            -- Detener todo cuando se apaga el toggle
             getgenv().JumpBoostActive = false
 
-            -- Detener el bucle de salto
             if getgenv().JumpLoop then
                 getgenv().JumpLoop:Disconnect()
                 getgenv().JumpLoop = nil
             end
 
-            -- Eliminar el botón visual
             if getgenv().JumpGui then
                 getgenv().JumpGui:Destroy()
                 getgenv().JumpGui = nil
             end
 
-            -- Limpiar posibles toques activos
             currentTouchInput = nil
         end
     end,
@@ -590,10 +510,8 @@ Tab:CreateToggle({
     CurrentValue = false,
     Callback = function(state)
         if state then
-            -- Activar (ejecutar desde URL)
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-Fog-FPS/refs/heads/main/Gama%20baja%201.txt"))()
         else
-            -- Restaurar (desactivar boost)
             if getgenv().BalancedPlusOriginal then
                 local Lighting = game:GetService("Lighting")
                 local Terrain = workspace:FindFirstChildOfClass("Terrain")
@@ -621,7 +539,7 @@ Tab:CreateToggle({
                 end
             end
 
-            print("♻️ Balanced+ FPS Boost DESACTIVADO")
+            print("Balanced+ FPS Boost DESACTIVADO")
         end
     end
 })
