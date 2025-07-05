@@ -28,7 +28,13 @@ Tab:CreateToggle({
     Callback = function(state)
         if state then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
-            getgenv().ESP_Enabled = true  
+            getgenv().ESP_Enabled = true
+
+            Rayfield:Notify({
+                Title = "!Ready¡",
+                Content = "ESP Enabled for All Players",
+                Duration = 3
+            })
         else
             if getgenv().ESP_Connection then
                 getgenv().ESP_Connection:Disconnect()
@@ -43,9 +49,16 @@ Tab:CreateToggle({
                     if t then t:Destroy() end
                 end
             end
+
+            Rayfield:Notify({
+                Title = "Disabled",
+                Content = "ESP Desactivated and Cleaned",
+                Duration = 3
+            })
         end
     end
 })
+
 
 Tab:CreateButton({
     Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
@@ -53,7 +66,7 @@ Tab:CreateButton({
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox3.txt'))()
     Rayfield:Notify({
             Title = "¡Ready!",
-            Content = "Big Hitbox For Chara Applied.",
+            Content = "Big Hitbox For Chara Aplicated.",
             Duration = 4,
             Image = nil,
         })
@@ -67,7 +80,7 @@ Tab:CreateButton({
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox4.txt'))()
     Rayfield:Notify({
             Title = "¡Ready!",
-            Content = "Big Hitbox For Vortex and Yuri Applied.",
+            Content = "Big Hitbox For Vortex and Yuri Aplicated.",
             Duration = 4,
             Image = nil,
         })
@@ -81,7 +94,7 @@ Tab:CreateButton({
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox5.txt'))()
     Rayfield:Notify({
             Title = "¡Ready!",
-            Content = "Big Hitbox For Suevivors Applied.",
+            Content = "Big Hitbox For Suevivors Aplicated.",
             Duration = 4,
             Image = nil,
         })
@@ -314,8 +327,8 @@ Tab:CreateToggle({
 			})
 		else
 			Rayfield:Notify({
-				Title = "Disable",
-				Content = "Fov Lock Disable",
+				Title = "Disabled",
+				Content = "Fov Lock Desactivated",
 				Duration = 4,
 				Image = nil,
 			})
@@ -374,8 +387,8 @@ connection = RunService.Heartbeat:Connect(function(dt)
 end)
 
 			Rayfield:Notify({
-				Title = "Disable",
-				Content = "Shader Disable",
+				Title = "Disabled",
+				Content = "Shader Desactivated",
 				Duration = 3,
 			})
 		end
@@ -403,7 +416,7 @@ Tab:CreateToggle({
 			})
 		else
 			Rayfield:Notify({
-				Title = "Disable",
+				Title = "Disabled",
 				Content = "Music Restored",
 				Duration = 3
 			})
@@ -411,31 +424,42 @@ Tab:CreateToggle({
 	end,
 })
 
-
 Tab:CreateToggle({
-    Name = "Infinite Jump (Android)",
-    CurrentValue = false,
-    Flag = "Infinite Jump",
-    Callback = function(state)
-        if state then
-            getgenv().JumpBoostActive = true
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
-        else
-            getgenv().JumpBoostActive = false
+	Name = "Infinite Jump (Android)",
+	CurrentValue = false,
+	Flag = "Infinite Jump",
+	Callback = function(state)
+		if state then
+			getgenv().JumpBoostActive = true
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
 
-            if getgenv().JumpLoop then
-                getgenv().JumpLoop:Disconnect()
-                getgenv().JumpLoop = nil
-            end
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Infinite Jump Activated",
+				Duration = 3
+			})
+		else
+			getgenv().JumpBoostActive = false
 
-            if getgenv().JumpGui then
-                getgenv().JumpGui:Destroy()
-                getgenv().JumpGui = nil
-            end
+			if getgenv().JumpLoop then
+				getgenv().JumpLoop:Disconnect()
+				getgenv().JumpLoop = nil
+			end
 
-            currentTouchInput = nil
-        end
-    end,
+			if getgenv().JumpGui then
+				getgenv().JumpGui:Destroy()
+				getgenv().JumpGui = nil
+			end
+
+			currentTouchInput = nil
+
+			Rayfield:Notify({
+				Title = "Disabled",
+				Content = "Infinite Jump Desactivated",
+				Duration = 3
+			})
+		end
+	end,
 })
 
 Tab:CreateToggle({
@@ -444,6 +468,12 @@ Tab:CreateToggle({
     Callback = function(state)
         if state then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-Fog-FPS/refs/heads/main/Gama%20baja%201.txt"))()
+
+            Rayfield:Notify({
+                Title = "!Ready¡",
+                Content = "Low Graphics Mode Enabled",
+                Duration = 4
+            })
         else
             if getgenv().BalancedPlusOriginal then
                 local Lighting = game:GetService("Lighting")
@@ -471,6 +501,12 @@ Tab:CreateToggle({
                     end
                 end
             end
+
+            Rayfield:Notify({
+                Title = "Disabled",
+                Content = "Low Graphics Mode Restored",
+                Duration = 4
+            })
         end
     end
 })
