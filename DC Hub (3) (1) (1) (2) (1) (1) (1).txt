@@ -178,7 +178,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Eggman Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid://126627384287348",
         })
 
     end,
@@ -192,7 +192,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Bendy Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid://140462858704189",
         })
 
     end,
@@ -206,7 +206,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Boris Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid://105940462654921",
         })
 
     end,
@@ -220,7 +220,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Cuphead Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid:75425444881730",
         })
 
     end,
@@ -234,7 +234,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Mugman Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid:95095429671664",
         })
 
     end,
@@ -248,7 +248,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Monika Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid:95095429671664",
         })
 
     end,
