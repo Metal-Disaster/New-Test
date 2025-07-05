@@ -27,19 +27,21 @@ Tab:CreateToggle({
     CurrentValue = false,
     Callback = function(state)
         if state then
-            -- Ejecutar el script remoto
+            -- Guardar estado para evitar conflictos si el usuario desactiva rápido
+            getgenv().ESP_ToggleState = true
+
             local success, err = pcall(function()
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
             end)
 
-            -- Solo mostrar notificación si se ejecutó bien
-            if success then
+            -- Verificamos que el toggle siga activado antes de mostrar la notificación
+            if success and getgenv().ESP_ToggleState then
                 Rayfield:Notify({
                     Title = "!Ready¡",
                     Content = "ESP Enabled for All Players",
                     Duration = 3
                 })
-            else
+            elseif not success then
                 Rayfield:Notify({
                     Title = "Error",
                     Content = "ESP failed to load:\n" .. tostring(err),
@@ -47,11 +49,14 @@ Tab:CreateToggle({
                 })
             end
         else
-            -- Desactivar ESP
+            -- Estado ahora desactivado
+            getgenv().ESP_ToggleState = false
+
             if getgenv().ESP_Connection then
                 getgenv().ESP_Connection:Disconnect()
             end
-            getgenv().ESP_Enabled = false 
+            getgenv().ESP_Enabled = false
+
             for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
                 if p.Character then
                     local char = p.Character
