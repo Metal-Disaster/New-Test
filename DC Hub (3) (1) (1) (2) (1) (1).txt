@@ -27,15 +27,27 @@ Tab:CreateToggle({
     CurrentValue = false,
     Callback = function(state)
         if state then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
-            getgenv().ESP_Enabled = true
+            -- Ejecutar el script remoto
+            local success, err = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
+            end)
 
-            Rayfield:Notify({
-                Title = "!Ready¡",
-                Content = "ESP Enabled for All Players",
-                Duration = 3
-            })
+            -- Solo mostrar notificación si se ejecutó bien
+            if success then
+                Rayfield:Notify({
+                    Title = "!Ready¡",
+                    Content = "ESP Enabled for All Players",
+                    Duration = 3
+                })
+            else
+                Rayfield:Notify({
+                    Title = "Error",
+                    Content = "ESP failed to load:\n" .. tostring(err),
+                    Duration = 5
+                })
+            end
         else
+            -- Desactivar ESP
             if getgenv().ESP_Connection then
                 getgenv().ESP_Connection:Disconnect()
             end
@@ -51,14 +63,13 @@ Tab:CreateToggle({
             end
 
             Rayfield:Notify({
-                Title = "Disabled",
-                Content = "ESP Desactivated and Cleaned",
+                Title = "Disable",
+                Content = "ESP Disabled and Cleaned",
                 Duration = 3
             })
         end
     end
 })
-
 
 Tab:CreateButton({
     Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
