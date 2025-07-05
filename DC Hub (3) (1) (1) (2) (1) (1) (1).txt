@@ -22,6 +22,63 @@ Tab:CreateParagraph({
     Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo puede tener errores o puedes saber que usas exploits / You should only run with the buttons with the character names indicated because otherwise you may have errors or you may know that you use exploits"
 })
 
+Tab:CreateToggle({
+    Name = "ESP (All Players)",
+    CurrentValue = false,
+    Callback = function(state)
+        getgenv().ESP_ToggleState = state
+
+        if state then
+            -- Ejecutar primero el ESP
+            local success, err = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
+            end)
+
+            -- Esperar un momento para asegurarse que el ESP se configure
+            task.delay(0.1, function()
+                if success and getgenv().ESP_ToggleState then
+                    Rayfield:Notify({
+                        Title = "!Ready¡",
+                        Content = "ESP Enabled for All Players",
+                        Duration = 3
+                    })
+                elseif not success then
+                    Rayfield:Notify({
+                        Title = "Error",
+                        Content = "Failed to load ESP:\n" .. tostring(err),
+                        Duration = 4
+                    })
+                end
+            end)
+
+        else
+            getgenv().ESP_ToggleState = false
+            getgenv().ESP_Enabled = false
+
+            if getgenv().ESP_Connection then
+                getgenv().ESP_Connection:Disconnect()
+                getgenv().ESP_Connection = nil
+            end
+
+            for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
+                if p.Character then
+                    local char = p.Character
+                    local h = char:FindFirstChild("ESP_Highlight")
+                    local t = char:FindFirstChild("ESP_NameTag")
+                    if h then h:Destroy() end
+                    if t then t:Destroy() end
+                end
+            end
+
+            Rayfield:Notify({
+                Title = "Disable",
+                Content = "ESP Disabled and Cleaned",
+                Duration = 3
+            })
+        end
+    end
+})
+
 Tab:CreateButton({
     Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
     Callback = function()
