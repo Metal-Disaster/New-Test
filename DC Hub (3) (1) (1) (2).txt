@@ -51,7 +51,7 @@ Tab:CreateToggle({
 	Name = "Big Hitbox (For Chara)",
 	CurrentValue = false,
 	Callback = function(state)
-		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox.txt"))()
+		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox3.txt"))()
 		if state then
 			loaded.startHitboxScript()
 		else
@@ -64,7 +64,7 @@ Tab:CreateToggle({
 	Name = "Big Hitbox (For Vortex and Yuri)",
 	CurrentValue = false,
 	Callback = function(state)
-		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox1.txt"))()
+		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox4.txt"))()
 		if state then
 			loaded.startHitboxScript()
 		else
@@ -77,7 +77,7 @@ Tab:CreateToggle({
 	Name = "Big Hitbox (For Survivors)",
 	CurrentValue = false,
 	Callback = function(state)
-		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox2.txt"))()
+		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox5.txt"))()
 		if state then
 			loaded.startHitboxScript()
 		else
