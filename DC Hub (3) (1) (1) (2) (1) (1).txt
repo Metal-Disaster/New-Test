@@ -272,80 +272,56 @@ Tab:CreateParagraph({
     Content = "Cuando uses el Fov, primero debes elegir la cantidad de fov y luego presionarle en Lock Fov porque de otra manera el juego se crasheara, si quieres cambiar el fov despues, debes desactivar Lock Fov y volver a configurar el fov porque si no igual crashea / When you use the Fov, you must first choose the amount of fov and then press Lock Fov because otherwise the game will crash, if you want to change the fov after, you must disable Lock Fov and reconfigure the FOV because otherwise it might crash"
 })
 
-local RunService = game:GetService("RunService")
+-- 📥 Cargar el script desde GitHub
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Fov.txt"))()
 
-local FovValue = 70 
-local FovLocked = false 
-local IsAdjustingSlider = false
-local OriginalFov = nil
-local PropertyChangedConnection = nil
-local HeartbeatConnection = nil
-
-
+-- 🎚️ Slider de FOV
 Tab:CreateSlider({
-    Name = "Fov",
-    Range = {1, 120},
-    Increment = 1,
-    Suffix = " FOV",
-    CurrentValue = FovValue,
-    Callback = function(Value)
-        FovValue = Value
-        IsAdjustingSlider = true
+	Name = "Fov",
+	Range = {1, 120},
+	Increment = 1,
+	Suffix = " FOV",
+	CurrentValue = getgenv().FovController and getgenv().FovController.FovValue or 70,
+	Callback = function(Value)
+		if getgenv().FovController and getgenv().FovController.SetFov then
+			getgenv().FovController.SetFov(Value)
+		end
 
-        if not FovLocked and workspace.CurrentCamera then
-            workspace.CurrentCamera.FieldOfView = FovValue
-        end
-
-        task.delay(0.1, function()
-            IsAdjustingSlider = false
-        end)
-    end,
+		Rayfield:Notify({
+			Title = "!Ready¡",
+			Content = "Fov Ajusted",
+			Duration = 3,
+			Image = nil,
+		})
+	end,
 })
 
+-- 🔒 Toggle para Lock FOV
 Tab:CreateToggle({
-    Name = "Lock Fov",
-    CurrentValue = false,
-    Callback = function(Value)
-        FovLocked = Value
+	Name = "Lock Fov",
+	CurrentValue = getgenv().FovController and getgenv().FovController.FovLocked or false,
+	Callback = function(Value)
+		if getgenv().FovController and getgenv().FovController.ToggleLock then
+			getgenv().FovController.ToggleLock(Value)
+		end
 
-        if FovLocked and workspace.CurrentCamera then
-            workspace.CurrentCamera.FieldOfView = FovValue
-            OriginalFov = FovValue
-
-            if PropertyChangedConnection then PropertyChangedConnection:Disconnect() end
-            PropertyChangedConnection = workspace.CurrentCamera:GetPropertyChangedSignal("FieldOfView"):Connect(function()
-                if FovLocked then
-                    workspace.CurrentCamera.FieldOfView = OriginalFov
-                end
-            end)
-
-            if not HeartbeatConnection then
-                HeartbeatConnection = RunService.Heartbeat:Connect(function()
-                    if FovLocked and workspace.CurrentCamera and not IsAdjustingSlider then
-                        workspace.CurrentCamera.FieldOfView = FovValue
-                    end
-                end)
-            end
-
-        else
-
-            if PropertyChangedConnection then
-                PropertyChangedConnection:Disconnect()
-                PropertyChangedConnection = nil
-            end
-            if HeartbeatConnection then
-                HeartbeatConnection:Disconnect()
-                HeartbeatConnection = nil
-            end
-        end
-    end,
+		if Value then
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Fov Lock Activated",
+				Duration = 4,
+				Image = nil,
+			})
+		else
+			Rayfield:Notify({
+				Title = "Disable",
+				Content = "Fov Lock Disable",
+				Duration = 4,
+				Image = nil,
+			})
+		end
+	end,
 })
-
-workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
-    if FovLocked and workspace.CurrentCamera then
-        workspace.CurrentCamera.FieldOfView = FovValue
-    end
-end)
 
 Tab:CreateButton({
     Name = "Infinite Yield",
@@ -361,125 +337,49 @@ Tab:CreateButton({
     end,
 })
 
-local lighting = game:GetService("Lighting")
+-- ⬇️ Carga el script desde Pastebin o GitHub
+loadstring(game:HttpGet("https://pastebin.com/raw/TU_ID_AQUÍ"))()
 
-local originalSettings = {}
-local originalEffects = {}
-local shaderLoopRunning = false
-local shaderLoopThread = nil
-
-local function backupOriginalLighting()
-    originalSettings = {
-        Ambient = lighting.Ambient,
-        OutdoorAmbient = lighting.OutdoorAmbient,
-        Brightness = lighting.Brightness,
-        GlobalShadows = lighting.GlobalShadows,
-        EnvironmentDiffuseScale = lighting.EnvironmentDiffuseScale,
-        EnvironmentSpecularScale = lighting.EnvironmentSpecularScale,
-        Technology = lighting.Technology,
-    }
-
-    originalEffects = {}
-    for _, effect in pairs(lighting:GetChildren()) do
-        if effect:IsA("PostEffect") and not effect.Name:match("^Shader_") then
-            table.insert(originalEffects, effect:Clone())
-        end
-    end
-end
-
-local function applyShaderLoop()
-    while shaderLoopRunning do
-        for _, v in pairs(lighting:GetChildren()) do
-            if v:IsA("PostEffect") and not v.Name:match("^Shader_") then
-                v.Enabled = false
-            end
-        end
-
-        lighting.Technology = Enum.Technology.Future
-        lighting.Ambient = Color3.fromRGB(150, 150, 150)
-        lighting.OutdoorAmbient = Color3.fromRGB(120, 120, 120)
-        lighting.Brightness = 1
-        lighting.GlobalShadows = true
-        lighting.EnvironmentDiffuseScale = 1.5
-        lighting.EnvironmentSpecularScale = 1.5
-
-        local function createOrUpdate(className, name, props)
-            local fx = lighting:FindFirstChild(name)
-            if not fx then
-                fx = Instance.new(className)
-                fx.Name = name
-                fx.Parent = lighting
-            end
-            for prop, val in pairs(props) do
-                fx[prop] = val
-            end
-        end
-
-        createOrUpdate("BloomEffect", "Shader_Bloom", {
-            Intensity = 0.5,
-            Size = 24,
-            Threshold = 1
-        })
-
-        createOrUpdate("BlurEffect", "Shader_Blur", {
-            Size = 2
-        })
-
-        createOrUpdate("ColorCorrectionEffect", "Shader_CC", {
-            Brightness = 0.1,
-            Contrast = 0.2,
-            Saturation = 0.15
-        })
-
-        createOrUpdate("SunRaysEffect", "Shader_SunRays", {
-            Intensity = 0.15,
-            Spread = 1
-        })
-
-        createOrUpdate("DepthOfFieldEffect", "Shader_DOF", {
-            FarIntensity = 0.08,
-            FocusDistance = 50,
-            NearIntensity = 0.1
-        })
-
-        task.wait(1)
-    end
-end
-
-local function restoreOriginalLighting()
-    for prop, val in pairs(originalSettings) do
-        lighting[prop] = val
-    end
-
-    for _, v in pairs(lighting:GetChildren()) do
-        if v:IsA("PostEffect") and v.Name:match("^Shader_") then
-            v:Destroy()
-        end
-    end
-
-    for _, effect in pairs(originalEffects) do
-        local restored = effect:Clone()
-        restored.Parent = lighting
-    end
-end
-
+-- 🎛️ Toggle para shaders
 Tab:CreateToggle({
-    Name = "Shaders (NaturaltIdiot)",
-    CurrentValue = false,
-    Flag = "ShaderToggle",
-    Callback = function(state)
-        if state then
-            backupOriginalLighting()
-            shaderLoopRunning = true
-            shaderLoopThread = task.spawn(applyShaderLoop)
-            print("Shaders activados")
-        else
-            shaderLoopRunning = false
-            task.wait(0.2)
-            restoreOriginalLighting()
-            print("Shaders desactivados")
-        end
-    end
+	Name = "Shaders (NaturaltIdiot)",
+	CurrentValue = false,
+	Flag = "ShaderToggle",
+	Callback = function(state)
+		local shader = getgenv().ShaderData
+		if not shader then return end
+
+		if state then
+			shader.backupOriginal()
+			shader.loopRunning = true
+			shader.thread = task.spawn(shader.applyLoop)
+
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Shader Activated",
+				Duration = 3,
+			})
+		else
+			shader.loopRunning = false
+			local RunService = game:GetService("RunService")
+local elapsed = 0
+local connection
+
+connection = RunService.Heartbeat:Connect(function(dt)
+	elapsed += dt
+	if elapsed >= 0.2 then
+		connection:Disconnect()
+		getgenv().ShaderData.restore()
+	end
+end)
+
+			Rayfield:Notify({
+				Title = "Disable",
+				Content = "Shader Disable",
+				Duration = 3,
+			})
+		end
+	end
 })
 
 local originalVolumes = {
