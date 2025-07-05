@@ -283,7 +283,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Frisk Activated",
             Duration = 4,
-            Image = 85471496784830,
+            Image = 122798338722001,
         })
 
     end,
