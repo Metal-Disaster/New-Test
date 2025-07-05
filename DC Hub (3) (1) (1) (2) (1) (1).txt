@@ -600,6 +600,12 @@ Tab:CreateToggle({
         if state then
             getgenv().JumpBoostActive = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
+            Rayfield:Notify({
+                Title = "!Ready¡",
+                Content = "Infinite Jump Activated",
+                Duration = 4,
+                Image = nil,
+
         else
             getgenv().JumpBoostActive = false
 
@@ -615,6 +621,13 @@ Tab:CreateToggle({
 
             currentTouchInput = nil
         end
+
+            Rayfield:Notify({
+                Title = "Disable",
+                Content = "Infinite Jump Disable",
+                Duration = 3,
+                Image = nil,
+
     end,
 })
 
@@ -624,6 +637,12 @@ Tab:CreateToggle({
     Callback = function(state)
         if state then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-Fog-FPS/refs/heads/main/Gama%20baja%201.txt"))()
+            Rayfield:Notify({
+                Title = "!Ready¡",
+                Content = "No Fog + FPS Activated",
+                Duration = 4,
+                Image = nil,
+
         else
             if getgenv().BalancedPlusOriginal then
                 local Lighting = game:GetService("Lighting")
@@ -652,7 +671,12 @@ Tab:CreateToggle({
                 end
             end
 
-            print("Balanced+ FPS Boost DESACTIVADO")
+            Rayfield:Notify({
+                Title = "Disable",
+                Content = "No Fog + FPS Disable",
+                Duration = 4,
+                Image = nil,
+
         end
     end
 })
