@@ -1,0 +1,528 @@
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "Test Hub | By Metal_Disaster",
+    LoadingTitle = "Test Hub",
+    LoadingSubtitle = "by Metal_Disaster",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "ProtectedHubData",
+        FileName = "Config"
+    },
+    Discord = {
+        Enabled = false
+    },
+    KeySystem = false
+})
+
+local Tab = Window:CreateTab("Main", 4483362458)
+
+Tab:CreateParagraph({
+    Title = "Nota / Note",
+    Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo puede tener errores o puedes saber que usas exploits / You should only run with the buttons with the character names indicated because otherwise you may have errors or you may know that you use exploits"
+})
+
+Tab:CreateToggle({
+    Name = "ESP (All Players)",
+    CurrentValue = false,
+    Callback = function(state)
+        if state then
+            -- Guardar estado para evitar conflictos si el usuario desactiva rápido
+            getgenv().ESP_ToggleState = true
+
+            local success, err = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
+            end)
+
+            -- Verificamos que el toggle siga activado antes de mostrar la notificación
+            if success and getgenv().ESP_ToggleState then
+                Rayfield:Notify({
+                    Title = "!Ready¡",
+                    Content = "ESP Enabled for All Players",
+                    Duration = 3
+                })
+            elseif not success then
+                Rayfield:Notify({
+                    Title = "Error",
+                    Content = "ESP failed to load:\n" .. tostring(err),
+                    Duration = 5
+                })
+            end
+        else
+            -- Estado ahora desactivado
+            getgenv().ESP_ToggleState = false
+
+            if getgenv().ESP_Connection then
+                getgenv().ESP_Connection:Disconnect()
+            end
+            getgenv().ESP_Enabled = false
+
+            for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
+                if p.Character then
+                    local char = p.Character
+                    local h = char:FindFirstChild("ESP_Highlight")
+                    local t = char:FindFirstChild("ESP_NameTag")
+                    if h then h:Destroy() end
+                    if t then t:Destroy() end
+                end
+            end
+
+            Rayfield:Notify({
+                Title = "Disable",
+                Content = "ESP Disabled and Cleaned",
+                Duration = 3
+            })
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox3.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Chara Aplicated.",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "Big Hitbox (For Vortex and Yuri)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox4.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Vortex and Yuri Aplicated.",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox5.txt'))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Big Hitbox For Suevivors Aplicated.",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+local Tab = Window:CreateTab("No CoolDowns", 4483362458)
+
+Tab:CreateParagraph({
+    Title = "Nota / Note",
+    Content = "Debes ejecutar únicamente los botones con los nombres de los personajes que indican porque de otro modo no funcionaran / You should only execute the buttons with the names of the characters indicated because otherwise they will not work"
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sonic",  
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/sMeSDW7s"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sonic Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cream",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cream.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Cream Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Vanilla",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Vanilla.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Vanilla Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Eggman",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Eggman.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Eggman Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Bendy",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Bendy.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Bendy Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Boris",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Boris.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Boris Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cuphead",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cuphead.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Cuphead Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Mugman",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Mugman.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Mugman Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Monika",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Monika.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Monika Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sayori",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sayori.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sayori Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sans",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sans.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sans Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Frisk",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Frisk.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Frisk Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+local Tab = Window:CreateTab("Extra", 4483362458)
+
+Tab:CreateParagraph({
+    Title = "Advertencia / Warning",
+    Content = "Cuando uses el Fov, primero debes elegir la cantidad de fov y luego presionarle en Lock Fov porque de otra manera el juego se crasheara, si quieres cambiar el fov despues, debes desactivar Lock Fov y volver a configurar el fov porque si no igual crashea / When you use the Fov, you must first choose the amount of fov and then press Lock Fov because otherwise the game will crash, if you want to change the fov after, you must disable Lock Fov and reconfigure the FOV because otherwise it might crash"
+})
+
+-- 📥 Cargar el script desde GitHub
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Fov.txt"))()
+
+-- 🎚️ Slider de FOV
+Tab:CreateSlider({
+	Name = "Fov",
+	Range = {1, 120},
+	Increment = 1,
+	Suffix = " FOV",
+	CurrentValue = getgenv().FovController and getgenv().FovController.FovValue or 70,
+	Callback = function(Value)
+		if getgenv().FovController and getgenv().FovController.SetFov then
+			getgenv().FovController.SetFov(Value)
+		end
+
+		Rayfield:Notify({
+			Title = "!Ready¡",
+			Content = "Fov Ajusted",
+			Duration = 3,
+			Image = nil,
+		})
+	end,
+})
+
+-- 🔒 Toggle para Lock FOV
+Tab:CreateToggle({
+	Name = "Lock Fov",
+	CurrentValue = getgenv().FovController and getgenv().FovController.FovLocked or false,
+	Callback = function(Value)
+		if getgenv().FovController and getgenv().FovController.ToggleLock then
+			getgenv().FovController.ToggleLock(Value)
+		end
+
+		if Value then
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Fov Lock Activated",
+				Duration = 4,
+				Image = nil,
+			})
+		else
+			Rayfield:Notify({
+				Title = "Disabled",
+				Content = "Fov Lock Desactivated",
+				Duration = 4,
+				Image = nil,
+			})
+		end
+	end,
+})
+
+Tab:CreateButton({
+    Name = "Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Infinite Yield Activated",
+            Duration = 4,
+            Image = nil,
+        })
+
+    end,
+})
+
+-- ⬇️ Carga el script desde Pastebin o GitHub
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Shader.txt"))()
+
+-- 🎛️ Toggle para shaders
+Tab:CreateToggle({
+	Name = "Shaders (NaturaltIdiot)",
+	CurrentValue = false,
+	Flag = "ShaderToggle",
+	Callback = function(state)
+		local shader = getgenv().ShaderData
+		if not shader then return end
+
+		if state then
+			shader.backupOriginal()
+			shader.loopRunning = true
+			shader.thread = task.spawn(shader.applyLoop)
+
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Shader Activated",
+				Duration = 3,
+			})
+		else
+			shader.loopRunning = false
+			local RunService = game:GetService("RunService")
+local elapsed = 0
+local connection
+
+connection = RunService.Heartbeat:Connect(function(dt)
+	elapsed += dt
+	if elapsed >= 0.2 then
+		connection:Disconnect()
+		getgenv().ShaderData.restore()
+	end
+end)
+
+			Rayfield:Notify({
+				Title = "Disabled",
+				Content = "Shader Desactivated",
+				Duration = 3,
+			})
+		end
+	end
+})
+
+-- Carga el script desde Pastebin (reemplaza con tu URL)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Music.txt"))()
+
+-- Toggle para No Music
+Tab:CreateToggle({
+	Name = "No Music",
+	CurrentValue = false,
+	Callback = function(Value)
+		local ctrl = getgenv().NoMusicController
+		if ctrl and ctrl.toggleMusic then
+			ctrl.toggleMusic(Value)
+		end
+
+		if Value then
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "All Music Muted",
+				Duration = 3
+			})
+		else
+			Rayfield:Notify({
+				Title = "Disabled",
+				Content = "Music Restored",
+				Duration = 3
+			})
+		end
+	end,
+})
+
+Tab:CreateToggle({
+	Name = "Infinite Jump (Android)",
+	CurrentValue = false,
+	Flag = "Infinite Jump",
+	Callback = function(state)
+		if state then
+			getgenv().JumpBoostActive = true
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infite%20Jump.txt"))()
+
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Infinite Jump Activated",
+				Duration = 3
+			})
+		else
+			getgenv().JumpBoostActive = false
+
+			if getgenv().JumpLoop then
+				getgenv().JumpLoop:Disconnect()
+				getgenv().JumpLoop = nil
+			end
+
+			if getgenv().JumpGui then
+				getgenv().JumpGui:Destroy()
+				getgenv().JumpGui = nil
+			end
+
+			currentTouchInput = nil
+
+			Rayfield:Notify({
+				Title = "Disabled",
+				Content = "Infinite Jump Desactivated",
+				Duration = 3
+			})
+		end
+	end,
+})
+
+Tab:CreateToggle({
+    Name = "No Fog + Fps",
+    CurrentValue = false,
+    Callback = function(state)
+        if state then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-Fog-FPS/refs/heads/main/Gama%20baja%201.txt"))()
+
+            Rayfield:Notify({
+                Title = "!Ready¡",
+                Content = "Low Graphics Mode Enabled",
+                Duration = 4
+            })
+        else
+            if getgenv().BalancedPlusOriginal then
+                local Lighting = game:GetService("Lighting")
+                local Terrain = workspace:FindFirstChildOfClass("Terrain")
+
+                Lighting.GlobalShadows = getgenv().BalancedPlusOriginal.GlobalShadows
+                Lighting.FogEnd = getgenv().BalancedPlusOriginal.FogEnd
+                Lighting.Brightness = getgenv().BalancedPlusOriginal.Brightness
+
+                if Terrain then
+                    Terrain.WaterWaveSize = getgenv().BalancedPlusOriginal.WaterWaveSize
+                    Terrain.WaterReflectance = getgenv().BalancedPlusOriginal.WaterReflectance
+                    Terrain.WaterTransparency = getgenv().BalancedPlusOriginal.WaterTransparency
+                end
+
+                for _, e in ipairs(getgenv().BalancedPlusOriginal.Effects) do
+                    e.Parent = Lighting
+                end
+            end
+
+            if getgenv().BalancedPlusModified then
+                for _, data in ipairs(getgenv().BalancedPlusModified) do
+                    if data.object and data.object.Parent then
+                        data.object[data.property] = data.original
+                    end
+                end
+            end
+
+            Rayfield:Notify({
+                Title = "Disabled",
+                Content = "Low Graphics Mode Restored",
+                Duration = 4
+            })
+        end
+    end
+})
