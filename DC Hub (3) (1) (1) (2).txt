@@ -47,11 +47,17 @@ Tab:CreateToggle({
     end
 })
 
-Tab:CreateButton({
-    Name = "Big Hitbox (For Chara)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox.txt"))()
-    end,
+Tab:CreateToggle({
+	Name = "Big Hitbox (For Chara)",
+	CurrentValue = false,
+	Callback = function(state)
+		local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Big-Hitbox-/refs/heads/main/Hitbox.txt"))()
+		if state then
+			loaded.startHitboxScript()
+		else
+			loaded.stopHitboxScript()
+		end
+	end,
 })
 
 Tab:CreateButton({
