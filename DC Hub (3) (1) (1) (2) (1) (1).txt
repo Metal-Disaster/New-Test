@@ -54,7 +54,7 @@ Tab:CreateButton({
     Rayfield:Notify({
             Title = "¡Ready!",
             Content = "Big Hitbox For Chara Applied.",
-            Duration = 3,
+            Duration = 6,
             Image = nil,
         })
 
@@ -68,7 +68,7 @@ Tab:CreateButton({
     Rayfield:Notify({
             Title = "¡Ready!",
             Content = "Big Hitbox For Vortex and Yuri Applied.",
-            Duration = 3,
+            Duration = 6,
             Image = nil,
         })
 
@@ -82,7 +82,7 @@ Tab:CreateButton({
     Rayfield:Notify({
             Title = "¡Ready!",
             Content = "Big Hitbox For Suevivors Applied.",
-            Duration = 3,
+            Duration = 6,
             Image = nil,
         })
 
@@ -100,6 +100,13 @@ Tab:CreateButton({
     Name = "No CoolDown Sonic",  
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/sMeSDW7s"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sonic Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -107,6 +114,13 @@ Tab:CreateButton({
     Name = "No CoolDown Cream",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cream.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Cream Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -114,6 +128,13 @@ Tab:CreateButton({
     Name = "No CoolDown Vanilla",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Vanilla.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Vanilla Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -121,6 +142,13 @@ Tab:CreateButton({
     Name = "No CoolDown Eggman",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Eggman.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Eggman Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -128,6 +156,13 @@ Tab:CreateButton({
     Name = "No CoolDown Bendy",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Bendy.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Bendy Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -135,6 +170,13 @@ Tab:CreateButton({
     Name = "No CoolDown Boris",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Boris.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Boris Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -142,6 +184,13 @@ Tab:CreateButton({
     Name = "No CoolDown Cuphead",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cuphead.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Cuphead Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -149,6 +198,13 @@ Tab:CreateButton({
     Name = "No CoolDown Mugman",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Mugman.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Mugman Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -156,6 +212,13 @@ Tab:CreateButton({
     Name = "No CoolDown Monika",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Monika.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Monika Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -163,6 +226,13 @@ Tab:CreateButton({
     Name = "No CoolDown Sayori",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sayori.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sayori Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -170,6 +240,14 @@ Tab:CreateButton({
     Name = "No CoolDown Sans",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sans.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sans Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
+
     end,
 })
 
@@ -177,6 +255,13 @@ Tab:CreateButton({
     Name = "No CoolDown Frisk",  
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Frisk.txt"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Frisk Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
@@ -266,6 +351,13 @@ Tab:CreateButton({
     Name = "Infinite Yield",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "Infinite Yield Activated",
+            Duration = 6,
+            Image = nil,
+        })
+
     end,
 })
 
