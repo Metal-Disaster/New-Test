@@ -70,49 +70,49 @@ local HitboxToggle = Tab:CreateToggle({
     end,
 })
 
-Tab:CreateButton({
-    Name = "Big Hitbox (For Exe)",  -- Texto que aparece en el botÃƒÂ³n
-    Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerName = player.Name
-
--- Extensiones para modificar hitboxes de todos los jugadores
-local hitboxModule = workspace:WaitForChild("gameInstance"):WaitForChild("hitBoxModule")
-local playersFolder = hitboxModule:WaitForChild("Players")
-
-for _, playerInFolder in ipairs(playersFolder:GetChildren()) do
-    local hitFolder = playerInFolder:FindFirstChild("HitFolder")
-    if hitFolder then
-        local collision = hitFolder:FindFirstChild("collision")
-        if collision then
-            collision.Size = Vector3.new(20, 15, 20)
+local HitboxToggle = Tab:CreateToggle({
+    Name = "Big Hitbox (For Chara)",
+    CurrentValue = false,
+    Flag = "BigHitboxToggle", -- Opcional (para guardar el estado)
+    Callback = function(Value)
+        local success, setActive = pcall(function()
+            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox1.txt"))() -- 🔥 Reemplaza con tu URL
+        end)
+        
+        if success and setActive then
+            setActive(Value)
+        else
+            Rayfield:Notify({
+                Title = "Error",
+                Content = "No se pudo cargar el script de hitbox.",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+            HitboxToggle:Set(false) -- Desactiva si hay error
         end
-    end
-end
     end,
 })
 
-Tab:CreateButton({
-    Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
-    Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerName = player.Name
-
--- Extensiones para modificar hitboxes de todos los jugadores
-local hitboxModule = workspace:WaitForChild("gameInstance"):WaitForChild("hitBoxModule")
-local playersFolder = hitboxModule:WaitForChild("Players")
-
-for _, playerInFolder in ipairs(playersFolder:GetChildren()) do
-    local hitFolder = playerInFolder:FindFirstChild("HitFolder")
-    if hitFolder then
-        local collision = hitFolder:FindFirstChild("collision")
-        if collision then
-            collision.Size = Vector3.new(30, 10, 30)
+local HitboxToggle = Tab:CreateToggle({
+    Name = "Big Hitbox (Survivors)",
+    CurrentValue = false,
+    Flag = "BigHitboxToggle",
+    Callback = function(Value)
+        local success, setActive = pcall(function()
+            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox2.txt"))()
+        end)
+        
+        if success and setActive then
+            setActive(Value)
+        else
+            Rayfield:Notify({
+                Title = "Error",
+                Content = "Failed to load hitbox script",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+            HitboxToggle:Set(false)
         end
-    end
-end
     end,
 })
 
