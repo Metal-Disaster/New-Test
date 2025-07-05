@@ -220,7 +220,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Cuphead Activated",
             Duration = 4,
-            Image = "rbxassetid:75425444881730",
+            Image = "rbxassetid://75425444881730",
         })
 
     end,
@@ -234,7 +234,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Mugman Activated",
             Duration = 4,
-            Image = "rbxassetid:95095429671664",
+            Image = "rbxassetid://95095429671664",
         })
 
     end,
@@ -248,7 +248,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Monika Activated",
             Duration = 4,
-            Image = "rbxassetid:95095429671664",
+            Image = "rbxassetid://95095429671664",
         })
 
     end,
@@ -262,7 +262,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Sayori Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid://117374404974166",
         })
 
     end,
@@ -276,7 +276,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Sans Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid://122038422648688",
         })
 
 
@@ -291,7 +291,7 @@ Tab:CreateButton({
             Title = "¡Ready!",
             Content = "No CoolDown Frisk Activated",
             Duration = 4,
-            Image = nil,
+            Image = "rbxassetid://122798338722001",
         })
 
     end,
