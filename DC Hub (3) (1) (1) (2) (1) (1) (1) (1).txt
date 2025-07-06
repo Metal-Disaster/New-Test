@@ -286,6 +286,176 @@ Tab:CreateButton({
     end,
 })
 
+local Tab = Window:CreateTab("No CoolDowns Minions", 4483362458)
+
+Tab:CreateButton({
+    Name = "No CoolDown Sonic Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sonic%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sonic Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cream Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cream%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Cream Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Vanilla Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Vanilla%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Vanilla Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Eggman Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/B¿Eggman%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Eggman Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Bendy Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Bendy%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Bendy Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Boris Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Boris%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Boris Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Cuphead Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Cuphead%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Cuphead Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Mugman Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Mugman%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Mugman Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Monika Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Monika%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Monika Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sayori Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sayori%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sayori Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Sans Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Sans%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Sans Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
+Tab:CreateButton({
+    Name = "No CoolDown Frisk Minion",  
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/No-CoolDowns/refs/heads/main/Frisk%20Minion"))()
+    Rayfield:Notify({
+            Title = "¡Ready!",
+            Content = "No CoolDown Frisk Minion Activated",
+            Duration = 4,
+            Image = 122798338722001,
+        })
+
+    end,
+})
+
 local Tab = Window:CreateTab("Extra", 4483362458)
 
 Tab:CreateParagraph({
