@@ -457,6 +457,37 @@ Tab:CreateToggle({
 })
 
 Tab:CreateToggle({
+	Name = "Infinite Jump (PC)",
+	CurrentValue = false,
+	Flag = "Infinite Jump",
+	Callback = function(state)
+		if state then
+			getgenv().JumpBoostActive = true
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/Infinite-Jump/refs/heads/main/Infinite%20Jump%20PC"))()
+
+			Rayfield:Notify({
+				Title = "!Ready¡",
+				Content = "Infinite Jump Activated (Press Space)",
+				Duration = 3
+			})
+		else
+			getgenv().JumpBoostActive = false
+
+			if getgenv().JumpLoop then
+				getgenv().JumpLoop:Disconnect()
+				getgenv().JumpLoop = nil
+			end
+
+			Rayfield:Notify({
+				Title = "Disabled",
+				Content = "Infinite Jump Deactivated",
+				Duration = 3
+			})
+		end
+	end,
+})
+
+Tab:CreateToggle({
     Name = "No Fog + Fps",
     CurrentValue = false,
     Callback = function(state)
