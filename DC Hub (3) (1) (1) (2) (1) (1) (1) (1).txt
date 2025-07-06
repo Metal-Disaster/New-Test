@@ -27,12 +27,10 @@ Tab:CreateToggle({
     CurrentValue = false,
     Callback = function(state)
         if state then
-            -- Ejecutar el script remoto
             local success, err = pcall(function()
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/ESP/refs/heads/main/ESP3.txt"))()
             end)
 
-            -- Solo mostrar notificación si se ejecutó bien
             if success then
                 Rayfield:Notify({
                     Title = "!Ready¡",
@@ -47,7 +45,6 @@ Tab:CreateToggle({
                 })
             end
         else
-            -- Desactivar ESP
             if getgenv().ESP_Connection then
                 getgenv().ESP_Connection:Disconnect()
             end
@@ -72,7 +69,7 @@ Tab:CreateToggle({
 })
 
 Tab:CreateButton({
-    Name = "Big Hitbox (For Chara)",  -- Texto que aparece en el botÃƒÂ³n
+    Name = "Big Hitbox (For Chara)",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox3.txt'))()
     Rayfield:Notify({
@@ -86,7 +83,7 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
-    Name = "Big Hitbox (For Vortex and Yuri)",  -- Texto que aparece en el botÃƒÂ³n
+    Name = "Big Hitbox (For Vortex and Yuri)",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox4.txt'))()
     Rayfield:Notify({
@@ -100,7 +97,7 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
-    Name = "Big Hitbox (For Survivor)",  -- Texto que aparece en el botÃƒÂ³n
+    Name = "Big Hitbox (For Survivor)",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Metal-Disaster/Hitbox/refs/heads/main/Hitbox5.txt'))()
     Rayfield:Notify({
@@ -296,10 +293,8 @@ Tab:CreateParagraph({
     Content = "Cuando uses el Fov, primero debes elegir la cantidad de fov y luego presionarle en Lock Fov porque de otra manera el juego se crasheara, si quieres cambiar el fov despues, debes desactivar Lock Fov y volver a configurar el fov porque si no igual crashea / When you use the Fov, you must first choose the amount of fov and then press Lock Fov because otherwise the game will crash, if you want to change the fov after, you must disable Lock Fov and reconfigure the FOV because otherwise it might crash"
 })
 
--- 📥 Cargar el script desde GitHub
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Fov.txt"))()
 
--- 🎚️ Slider de FOV
 Tab:CreateSlider({
 	Name = "Fov",
 	Range = {1, 120},
@@ -313,7 +308,6 @@ Tab:CreateSlider({
 	end,
 })
 
--- 🔒 Toggle para Lock FOV
 Tab:CreateToggle({
 	Name = "Lock Fov",
 	CurrentValue = getgenv().FovController and getgenv().FovController.FovLocked or false,
@@ -354,10 +348,8 @@ Tab:CreateButton({
     end,
 })
 
--- ⬇️ Carga el script desde Pastebin o GitHub
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Shader.txt"))()
 
--- 🎛️ Toggle para shaders
 Tab:CreateToggle({
 	Name = "Shaders (NaturaltIdiot)",
 	CurrentValue = false,
@@ -399,10 +391,8 @@ end)
 	end
 })
 
--- Carga el script desde Pastebin (reemplaza con tu URL)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Metal-Disaster/FOV/refs/heads/main/Music.txt"))()
 
--- Toggle para No Music
 Tab:CreateToggle({
 	Name = "No Music",
 	CurrentValue = false,
